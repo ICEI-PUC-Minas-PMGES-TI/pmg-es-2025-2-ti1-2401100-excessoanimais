@@ -206,11 +206,11 @@ Relação de ferramentas empregadas pelo grupo durante o projeto.
 
 | Ambiente                    | Plataforma | Link de acesso                                     |
 | --------------------------- | ---------- | -------------------------------------------------- |
-| Processo de Design Thinking | Miro       | [](https://miro.com/app/live-embed/uXjVJSvRFpQ=/?embedMode=view_only_without_ui&moveToViewport=-1549%2C-1179%2C7835%2C3667&embedId=453530841408)|
-| Repositório de código       | GitHub     | [](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-excessoanimais.git) |
-| Protótipo de Telas          | Figma      | [](https://www.figma.com/board/kepVe4IaAiIuy9cNVgNPvJ/FLUXO---INTERA%C3%87AO?node-id=0-1&p=f&t=bQCXrZnszdkVXm6Z-0)   |
+| Processo de Design Thinking | Miro       | https://miro.com/app/live-embed/uXjVJSvRFpQ=/?embedMode=view_only_without_ui&moveToViewport=-1549%2C-1179%2C7835%2C3667&embedId=453530841408|
+| Repositório de código       | GitHub     | https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-excessoanimais.git|
+| Protótipo de Telas          | Figma      | https://www.figma.com/board/kepVe4IaAiIuy9cNVgNPvJ/FLUXO---INTERA%C3%87AO?node-id=0-1&p=f&t=bQCXrZnszdkVXm6Z-0  |
 | Hospedagem do site          | Render     | https://site.render.com/XXXXXXX ⚠️ EXEMPLO ⚠️ |
-| Protótipo Interativo        | Figma      | [](https://www.figma.com/board/kepVe4IaAiIuy9cNVgNPvJ/FLUXO---INTERA%C3%87AO?node-id=0-1&p=f&t=bQCXrZnszdkVXm6Z-0)   |
+| Protótipo Interativo        | Figma      | https://www.figma.com/board/kepVe4IaAiIuy9cNVgNPvJ/FLUXO---INTERA%C3%87AO?node-id=0-1&p=f&t=bQCXrZnszdkVXm6Z-0  |
 |                             |            |                                                    |
 
 ## Gerenciamento do Projeto
