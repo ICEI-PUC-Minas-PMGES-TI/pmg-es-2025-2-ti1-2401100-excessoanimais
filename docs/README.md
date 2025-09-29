@@ -2,7 +2,7 @@
 
 Informações básicas do projeto.
 
-* **Projeto:** PetNose
+* **Projeto:** ZooPet
 * **Repositório GitHub:** https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-excessoanimais.git
 
 * **Membros da equipe:**
