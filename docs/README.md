@@ -158,10 +158,39 @@ Artefatos relacionados com a interface e a interacão do usuário na proposta de
 
 ### Wireframes
 
+### Protótipo de Telas
+
+#### Home - Page
+
+![alt text](<images/Protótipo de Telas/Tela 1.jpg>)
+![alt text](<images/Protótipo de Telas/Tela 2.jpg>)
+![alt text](<images/Protótipo de Telas/Tela 3.jpg>)
+
+#### Aba de Denúncia - Denúncia
+
+![alt text](<images/Protótipo de Telas/Tela 4.jpg>)
+![alt text](<images/Protótipo de Telas/Tela 5.jpg>)
+![alt text](<images/Protótipo de Telas/Tela 6.jpg>)
+
+#### Aba de Denúncia - Consulta de Protocolo
+
+![alt text](<images/Protótipo de Telas/Tela 7.jpg>)
+
+#### Aba de Adoção
+
+| Catálogo | Caminho "quero adotar" |
+| -------- | ---------------------- |
+| ![alt text](<images/Protótipo de Telas/Tela 8.jpg>) | ![alt text](<images/Protótipo de Telas/Tela 9.jpg>) |
+
+#### Aba Sobre
+
+![alt text](<images/Protótipo de Telas/Tela 10.jpg>)
+![alt text](<images/Protótipo de Telas/Tela 11.jpg>)
+![alt text](<images/Protótipo de Telas/Tela 12.jpg>)
+
 ### User Flow
 
-![Fluxo1](<images/FLUXO _ INTERAÇAO.jpg>)
-![Fluxo2](<images/FLUXO _ INTERAÇAO (1).jpg>)
+![alt text](<images/User Flow.png>)
 
 ### Protótipo Interativo
 
@@ -179,7 +208,7 @@ Relação de ferramentas empregadas pelo grupo durante o projeto.
 | --------------------------- | ---------- | -------------------------------------------------- |
 | Processo de Design Thinking | Miro       | [](https://miro.com/app/live-embed/uXjVJSvRFpQ=/?embedMode=view_only_without_ui&moveToViewport=-1549%2C-1179%2C7835%2C3667&embedId=453530841408)|
 | Repositório de código       | GitHub     | [](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-excessoanimais.git) |
-| User Flow                   | Figma      | [](https://www.figma.com/board/kepVe4IaAiIuy9cNVgNPvJ/FLUXO---INTERA%C3%87AO?node-id=0-1&p=f&t=bQCXrZnszdkVXm6Z-0)   |
+| Protótipo de Telas          | Figma      | [](https://www.figma.com/board/kepVe4IaAiIuy9cNVgNPvJ/FLUXO---INTERA%C3%87AO?node-id=0-1&p=f&t=bQCXrZnszdkVXm6Z-0)   |
 | Hospedagem do site          | Render     | https://site.render.com/XXXXXXX ⚠️ EXEMPLO ⚠️ |
 | Protótipo Interativo        | Figma      | [](https://www.figma.com/board/kepVe4IaAiIuy9cNVgNPvJ/FLUXO---INTERA%C3%87AO?node-id=0-1&p=f&t=bQCXrZnszdkVXm6Z-0)   |
 |                             |            |                                                    |
