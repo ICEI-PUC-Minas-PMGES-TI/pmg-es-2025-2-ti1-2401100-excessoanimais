@@ -6,9 +6,10 @@
   <title>ZooPet — Cadastro</title>
   <link rel="stylesheet" href="../../assets/css/registerPage.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="../../assets/js/register.js" defer></script>
 </head>
 <body>
-  <a class="voltar" href="#">← Voltar ao início</a>
+  <a class="voltar" href="login.html">← Voltar para login</a>
 
   <div class="fundo-escuro">
     <img src="../../assets/images/backgroundLoginImg.png" alt="Imagem de um cachorro" class="imagem-fundo">
@@ -23,7 +24,7 @@
 
       <h2>Crie sua conta</h2>
 
-      <form action="">
+      <form id="form-cadastro">
         <label for="nome">Nome completo</label>
         <div class="campo">
           <input id="nome" type="text" placeholder="Seu nome completo" required>
@@ -39,11 +40,6 @@
           <input id="senha" type="password" placeholder="Crie uma senha" required>
         </div>
 
-        <label for="confirmar">Confirmar senha</label>
-        <div class="campo">
-          <input id="confirmar" type="password" placeholder="Repita a senha" required>
-        </div>
-
         <div class="botao-centro">
           <button class="botao" type="submit">Cadastrar</button>
         </div>
@@ -52,6 +48,8 @@
           <p>Já tem uma conta? <a href="../loginPage/index.html">Entrar</a></p>
         </div>
       </form>
+
+      <p id="mensagem" class="mensagem"></p>
     </div>
   </div>
 </body>

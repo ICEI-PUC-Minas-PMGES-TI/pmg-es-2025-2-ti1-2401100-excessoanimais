@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ZooPet — Login</title>
-    <link rel="stylesheet" href="../../assets/css/loginPage.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZooPet — Login</title>
+  <link rel="stylesheet" href="../../assets/css/loginPage.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="../../assets/js/login.js" defer></script>
 </head>
 <body>
-    <a class="voltar" href="#">← Voltar ao início</a>
+  <a class="voltar" href="#">← Voltar ao início</a>
 
-    <div class="fundo-escuro">
-        <img src="../../assets/images/backgroundLoginImg.png" alt="Imagem de um cachorro" class="imagem-fundo">
-    </div>
-
+  <div class="fundo-escuro">
+    <img src="../../assets/images/backgroundLoginImg.png" alt="Imagem de um cachorro" class="imagem-fundo">
+  </div>
 
   <div class="centro">
     <div class="caixa-login">
@@ -24,7 +24,7 @@
 
       <h2>Acesse sua conta</h2>
 
-      <form action="">
+      <form id="form-login">
         <label for="email">E-mail</label>
         <div class="campo">
           <input id="email" type="email" placeholder="seu@email.com" required>
@@ -40,10 +40,11 @@
         </div>
 
         <div class="links">
-          <p><a href="#">Esqueci minha senha</a></p>
           <p>Não tem uma conta? <a href="../registerPage/index.html">Cadastre-se</a></p>
         </div>
       </form>
+
+      <p id="mensagem" class="mensagem"></p>
     </div>
   </div>
 </body>
