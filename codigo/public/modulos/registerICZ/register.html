@@ -71,3 +71,104 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        const tabela = document.querySelector("#tabela tbody");
+        const orgao = document.getElementById("orgao");
+        const cnpj = document.getElementById("cnpj");
+        const email = document.getElementById("email");
+        const telefone = document.getElementById("telefone");
+        const area = document.getElementById("area");
+
+        const btnInserir = document.getElementById("btnInserir");
+        const btnAlterar = document.getElementById("btnAlterar");
+        const btnExcluir = document.getElementById("btnExcluir");
+        const btnLimpar = document.getElementById("btnLimpar");
+
+        let linhaSelecionada = null;
+
+        // Inserir novo registro
+        btnInserir.onclick = () => {
+            if (!orgao.value) {
+                alert("Por favor, insira o nome do órgão.");
+                return;
+            }
+
+            const novaLinha = tabela.insertRow();
+            novaLinha.insertCell(0).textContent = orgao.value;
+            novaLinha.insertCell(1).textContent = telefone.value;
+            novaLinha.insertCell(2).textContent = cnpj.value;
+            novaLinha.insertCell(3).textContent = area.value;
+            novaLinha.insertCell(4).textContent = email.value;
+
+            limparCampos();
+            adicionarEventoSelecao();
+        };
+
+        // Alterar linha selecionada
+        btnAlterar.onclick = () => {
+            if (!linhaSelecionada) {
+                alert("Selecione uma linha para alterar.");
+                return;
+            }
+
+            linhaSelecionada.cells[0].textContent = orgao.value;
+            linhaSelecionada.cells[1].textContent = telefone.value;
+            linhaSelecionada.cells[2].textContent = cnpj.value;
+            linhaSelecionada.cells[3].textContent = area.value;
+            linhaSelecionada.cells[4].textContent = email.value;
+
+            limparCampos();
+            linhaSelecionada.classList.remove("selected");
+            linhaSelecionada = null;
+        };
+
+        // Excluir linha selecionada
+        btnExcluir.onclick = () => {
+            if (!linhaSelecionada) {
+                alert("Selecione uma linha para excluir.");
+                return;
+            }
+            linhaSelecionada.remove();
+            limparCampos();
+            linhaSelecionada = null;
+        };
+
+        // Limpar campos
+        btnLimpar.onclick = () => {
+            limparCampos();
+            if (linhaSelecionada) linhaSelecionada.classList.remove("selected");
+            linhaSelecionada = null;
+        };
+
+        // Função para limpar inputs
+        function limparCampos() {
+            orgao.value = "";
+            cnpj.value = "";
+            email.value = "";
+            telefone.value = "";
+            area.value = "";
+        }
+
+        // Permitir clicar na linha para editar
+        function adicionarEventoSelecao() {
+            document.querySelectorAll("#tabela tbody tr").forEach(linha => {
+                linha.onclick = () => {
+                    if (linhaSelecionada) linhaSelecionada.classList.remove("selected");
+                    linhaSelecionada = linha;
+                    linha.classList.add("selected");
+
+                    orgao.value = linha.cells[0].textContent;
+                    telefone.value = linha.cells[1].textContent;
+                    cnpj.value = linha.cells[2].textContent;
+                    area.value = linha.cells[3].textContent;
+                    email.value = linha.cells[4].textContent;
+                };
+            });
+        }
+
+        adicionarEventoSelecao(); // Inicializa para a linha existente
+    </script>
+</body>
+
+</html>
