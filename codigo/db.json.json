@@ -1,0 +1,81 @@
+{
+  "filtrosAdocao": {
+    "adocao": {
+      "tipo": "botao",
+      "descricao": "Exibe a seção de filtros de busca para adoção de animais.",
+      "comportamento": "Ao clicar, exibe os campos de filtro para pesquisa de animais disponíveis."
+    },
+    "buscarPorNome": {
+      "tipo": "input_texto",
+      "descricao": "Permite que o usuário digite o nome do animal que deseja procurar.",
+      "comportamento": "Filtra a lista de animais pelo nome (busca parcial ou completa) ao pressionar Enter ou clicar em 'Buscar'."
+    },
+    "buscarPorEspecie": {
+      "tipo": "selecao",
+      "opcoes": ["Cachorro", "Gato"],
+      "descricao": "Filtra os animais disponíveis por espécie.",
+      "comportamento": "Atualiza a lista de animais com base na espécie selecionada."
+    },
+    "buscarPorPorte": {
+      "tipo": "selecao",
+      "opcoes": ["Pequeno", "Médio", "Grande"],
+      "descricao": "Permite filtrar os animais pelo porte físico.",
+      "comportamento": "Atualiza os resultados conforme o porte selecionado."
+    },
+    "buscarPorIdade": {
+      "tipo": "selecao",
+      "opcoes": ["Filhote", "Jovem", "Adulto"],
+      "descricao": "Filtra os animais de acordo com a faixa etária.",
+      "comportamento": "Exibe apenas animais da faixa etária selecionada."
+    },
+    "sexo": {
+      "tipo": "selecao",
+      "opcoes": ["Fêmea", "Macho"],
+      "descricao": "Permite a filtragem dos animais por sexo.",
+      "comportamento": "Refina os resultados de acordo com o sexo selecionado."
+    },
+    "acaoFiltrar": {
+      "tipo": "acao_automatica_ou_botao",
+      "descricao": "Aplica todos os filtros combinados ao mesmo tempo.",
+      "comportamento": "Atualiza automaticamente a lista de animais ou mediante clique no botão 'Buscar'."
+    },
+    "limparFiltros": {
+      "tipo": "botao",
+      "descricao": "Reseta todos os filtros para os valores padrão.",
+      "comportamento": "Remove os filtros aplicados e exibe todos os animais cadastrados."
+    }
+  },
+
+  "instituicoes": {
+    {
+      "id": 1,
+      "nome": "Centro de Controle de Zoonoses",
+      "telefone": "(31) 3221-4567",
+      "cnpj": "91.587.653/0001-74",
+      "area": "Savassi",
+      "email": "ctzoonoses.bh@gmail.com"
+    },
+    {
+      "id": 2,
+      "nome": "Centro de Controle de Zoonoses - Belo Horizonte",
+      "endereco": {
+        "rua": "Rua Catas Altas",
+        "numero": "567",
+        "bairro": "Santa Efigênia",
+        "cidade": "Belo Horizonte",
+        "estado": "MG"
+      },
+      "telefone": "(31) 3277-7474",
+      "email": "zoonoses.pbh@pbh.gov.br",
+      "horario": "Segunda a Sexta: 8h às 17h",
+      "coordenadas": {
+        "latitude": -19.9167,
+        "longitude": -43.9345
+      },
+      "areaAtuacao": "Controle de zoonoses, resgate de animais e adoção"
+    },
+    {
+      "id": 3,
+      "nome": "Centro de Zoonoses - Juiz de Fora",
+      "en
+

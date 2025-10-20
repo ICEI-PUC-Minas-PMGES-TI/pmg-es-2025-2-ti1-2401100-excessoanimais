@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoção de Animais</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main>
+        <h1>Adoção de Animais</h1>
+
+        <section class="filtros">
+            <h2>Filtros de Busca</h2>
+
+            <div class="campo-filtro">
+                <label for="nome">Buscar por nome:</label>
+                <input type="text" id="nome" placeholder="Digite o nome do animal">
+            </div>
+
+            <div class="campo-filtro">
+                <label for="especie">Espécie:</label>
+                <select id="especie">
+                    <option value="">Todas</option>
+                    <option value="Cachorro">Cachorro</option>
+                    <option value="Gato">Gato</option>
+                </select>
+            </div>
+
+            <div class="campo-filtro">
+                <label>Porte:</label>
+                <div id="porte" class="opcoes-radio">
+                    <label><input type="radio" name="porte" value="" checked> Todos</label>
+                    <label><input type="radio" name="porte" value="Pequeno"> Pequeno</label>
+                    <label><input type="radio" name="porte" value="Medio"> Médio</label>
+                    <label><input type="radio" name="porte" value="Grande"> Grande</label>
+                </div>
+            </div>
+
+            <div class="campo-filtro">
+                <label for="idade">Idade:</label>
+                <select id="idade">
+                    <option value="">Todas</option>
+                    <option value="Filhote">Filhote</option>
+                    <option value="Jovem">Jovem</option>
+                    <option value="Adulto">Adulto</option>
+                </select>
+            </div>
+
+            <div class="campo-filtro">
+                <label>Sexo:</label>
+                <div id="sexo" class="opcoes-radio">
+                    <label><input type="radio" name="sexo" value="" checked> Ambos</label>
+                    <label><input type="radio" name="sexo" value="Femea"> Fêmea</label>
+                    <label><input type="radio" name="sexo" value="Macho"> Macho</label>
+                </div>
+            </div>
+
+            <div class="acoes">
+                <button id="limparFiltros">Limpar Filtros</button>
+            </div>
+        </section>
+
+        <section class="resultados">
+            <h2>Animais Disponíveis</h2>
+            <div id="listaAnimais" class="animais-grid">
+                <p id="mensagemVazio" style="display: none;">Nenhum animal encontrado com esses filtros.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
