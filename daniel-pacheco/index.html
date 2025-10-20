@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filtros de Animais</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Filtros de Animais</h2>
+
+      <div class="filter-group">
+        <h3>Porte:</h3>
+        <div class="options">
+          <input type="checkbox" id="pequeno" value="Pequeno Porte" /><label
+            for="pequeno"
+            >Pequeno Porte</label
+          >
+          <input type="checkbox" id="medio" value="Médio Porte" /><label
+            for="medio"
+            >Médio Porte</label
+          >
+          <input type="checkbox" id="grande" value="Grande Porte" /><label
+            for="grande"
+            >Grande Porte</label
+          >
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h3>Temperamento:</h3>
+        <div class="options">
+          <input type="checkbox" id="docil" value="Dócil" /><label for="docil"
+            >Dócil</label
+          >
+          <input type="checkbox" id="agitado" value="Agitado" /><label
+            for="agitado"
+            >Agitado</label
+          >
+          <input type="checkbox" id="hostil" value="Hostil" /><label
+            for="hostil"
+            >Hostil</label
+          >
+          <input type="checkbox" id="companheiro" value="Companheiro" /><label
+            for="companheiro"
+            >Companheiro</label
+          >
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h3>Região:</h3>
+        <div class="options">
+          <input type="checkbox" id="bh" value="Belo Horizonte" /><label
+            for="bh"
+            >Belo Horizonte</label
+          >
+          <input type="checkbox" id="betim" value="Betim" /><label for="betim"
+            >Betim</label
+          >
+          <input type="checkbox" id="ibirite" value="Ibirité" /><label
+            for="ibirite"
+            >Ibirité</label
+          >
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h3>Vacinas:</h3>
+        <div class="options">
+          <input type="checkbox" id="raiva" value="Raiva" /><label for="raiva"
+            >Raiva</label
+          >
+          <input type="checkbox" id="leish" value="Leishmaniose" /><label
+            for="leish"
+            >Leishmaniose</label
+          >
+          <input type="checkbox" id="parvo" value="Parvovirose" /><label
+            for="parvo"
+            >Parvovirose</label
+          >
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h3>Idade:</h3>
+        <select id="idade">
+          <option value="">Selecione</option>
+          <option value="0-5 anos">0-5 anos</option>
+          <option value="6-8 anos">6-8 anos</option>
+          <option value="10-12 anos">10-12 anos</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <h3>Raça:</h3>
+        <div class="options">
+          <input type="checkbox" id="poodle" value="Poodle" /><label
+            for="poodle"
+            >Poodle</label
+          >
+          <input type="checkbox" id="vira" value="Vira-lata" /><label for="vira"
+            >Vira-lata</label
+          >
+          <input type="checkbox" id="pinscher" value="Pinscher" /><label
+            for="pinscher"
+            >Pinscher</label
+          >
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button class="btn aplicar" onclick="mostrarFiltros()">
+          Aplicar Filtros
+        </button>
+        <button class="btn limpar" onclick="limparFiltros()">
+          Limpar Filtros
+        </button>
+      </div>
+
+      <div id="resultado" class="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
