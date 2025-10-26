@@ -1,16 +1,18 @@
 {
   "usuarios": [
     {
-      "id": 1,
-      "nome": "João da Silva",
-      "email": "joao@email.com",
-      "senha": "123456"
-    },
-    {
+      "tipoUsuario": "comum",
       "nome": "Douglas Freitas",
       "email": "douglasamf14@gmail.com",
       "senha": "14Douglas$$",
-      "id": 2
+      "telefone": "31971959202",
+      "cep": "32470000",
+      "endereco": "Rua Fernando Sabino, 06, Serra dos Bandeirantes, Mário Campos",
+      "bio": "",
+      "animaisAdotados": [],
+      "animaisCurtidos": [],
+      "denunciasFeitas": [],
+      "id": 1
     }
   ]
 }
