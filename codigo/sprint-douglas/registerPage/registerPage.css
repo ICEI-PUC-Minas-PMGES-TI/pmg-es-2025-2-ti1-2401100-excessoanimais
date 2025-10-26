@@ -15,16 +15,16 @@ body {
   height: 100vh;
   font-family: 'Inter', sans-serif;
   color: var(--cor-texto);
+  background: url('fundo.jpg') no-repeat center center;
+  background-size: cover;
   position: relative;
+  overflow-y: auto;
 }
 
 .fundo-escuro {
-  position: fixed;
-  inset: 0;
   background: rgba(0, 0, 0, 0.15);
   z-index: 0;
   overflow: hidden;
-  pointer-events: none;
 }
 
 .imagem-fundo {
@@ -44,26 +44,25 @@ body {
   color: #fff;
   text-decoration: none;
   font-weight: 500;
-  z-index: 1;
 }
 
 .centro {
-  height: 100%;
+  min-height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  position: relative;
-  z-index: 1;
+  padding: 40px 20px;
 }
 
 .caixa-login {
-  width: 400px;
+  width: 420px;
   background: var(--cor-fundo-caixa);
   border: 1px solid var(--cor-borda);
   border-radius: 10px;
-  padding: 30px;
+  padding: 35px;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  max-height: 90vh;
 }
 
 .logo {
@@ -107,17 +106,20 @@ label {
   margin-bottom: 15px;
 }
 
-.campo input {
+.campo input,
+.campo select,
+.campo textarea {
   width: 100%;
   border: none;
   outline: none;
   font-size: 15px;
   background: none;
+  resize: none;
 }
 
 .botao-centro {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .botao {
@@ -127,6 +129,7 @@ label {
   padding: 10px 25px;
   font-weight: 600;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .botao:hover {
@@ -147,15 +150,6 @@ label {
 @media (max-width: 480px) {
   .caixa-login {
     width: 90%;
-    padding: 20px;
-  }
-
-  .logo img {
-    width: 40px;
-    height: 40px;
-  }
-
-  h2 {
-    font-size: 18px;
+    padding: 25px;
   }
 }
