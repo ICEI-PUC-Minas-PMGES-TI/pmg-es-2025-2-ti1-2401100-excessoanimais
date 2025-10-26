@@ -1,0 +1,20 @@
+{
+  "instituicoes": [
+    {
+      "id": "1",
+      "orgao": "Centro de Controle de Zoonoses",
+      "telefone": "(31) 3221-4567",
+      "cnpj": "91.587.653/0001-74",
+      "area": "Savassi",
+      "email": "ctzoonoses.bh@gmail.com"
+    },
+    {
+      "orgao": "Centro de Controle de Zoonoses",
+      "telefone": "(31) 3221-4567",
+      "cnpj": "91.587.653/0001-74",
+      "area": "Buritis",
+      "email": "ctzoonoses.bh@gmail.com",
+      "id": "5f19"
+    }
+  ]
+}

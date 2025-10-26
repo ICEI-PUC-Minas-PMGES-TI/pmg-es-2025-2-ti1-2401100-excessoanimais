@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro de Instituições de Controle de Zoonoses</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Cadastro de Instituições de Controle de Zoonoses</h1>
+
+    <form class="formulario" id="formulario">
+      <div class="linha">
+        <div class="campo">
+          <label>Nome do órgão</label>
+          <input type="text" id="orgao" required />
+        </div>
+
+        <div class="campo">
+          <label>CNPJ do Órgão</label>
+          <input type="text" id="cnpj" placeholder="00.000.000/0001-00" />
+        </div>
+      </div>
+
+      <div class="linha">
+        <div class="campo">
+          <label>Email institucional</label>
+          <input type="email" id="email" />
+        </div>
+
+        <div class="campo">
+          <label>Telefone</label>
+          <input type="tel" id="telefone" placeholder="(00) 90000-0000" />
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>Área de Cobertura - Bairro</label>
+        <input type="text" id="area" />
+      </div>
+
+      <div class="botoes">
+        <button type="button" class="inserir" id="btnInserir">Inserir</button>
+        <button type="button" class="alterar" id="btnAlterar">Alterar</button>
+        <button type="button" class="excluir" id="btnExcluir">Excluir</button>
+        <button type="button" class="limpar" id="btnLimpar">Limpar</button>
+      </div>
+    </form>
+
+    <table id="tabela">
+      <thead>
+        <tr>
+          <th>Nome do órgão</th>
+          <th>Telefone</th>
+          <th>CNPJ</th>
+          <th>Área</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    const API_URL = "http://localhost:3000/instituicoes";
+    const tabela = document.querySelector("#tabela tbody");
+
+    const orgao = document.getElementById("orgao");
+    const cnpj = document.getElementById("cnpj");
+    const email = document.getElementById("email");
+    const telefone = document.getElementById("telefone");
+    const area = document.getElementById("area");
+
+    const btnInserir = document.getElementById("btnInserir");
+    const btnAlterar = document.getElementById("btnAlterar");
+    const btnExcluir = document.getElementById("btnExcluir");
+    const btnLimpar = document.getElementById("btnLimpar");
+
+    let linhaSelecionada = null;
+    let idSelecionado = null;
+
+    // 🔹 Carregar dados do servidor
+    async function carregarInstituicoes() {
+      tabela.innerHTML = "";
+      const resposta = await fetch(API_URL);
+      const dados = await resposta.json();
+
+      dados.forEach((item) => {
+        const linha = tabela.insertRow();
+        linha.innerHTML = `
+          <td>${item.orgao}</td>
+          <td>${item.telefone}</td>
+          <td>${item.cnpj}</td>
+          <td>${item.area}</td>
+          <td>${item.email}</td>
+        `;
+        linha.onclick = () => selecionarLinha(linha, item);
+      });
+    }
+
+    // 🔹 Inserir nova instituição
+    btnInserir.onclick = async () => {
+      const nova = {
+        orgao: orgao.value,
+        telefone: telefone.value,
+        cnpj: cnpj.value,
+        area: area.value,
+        email: email.value,
+      };
+
+      await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(nova),
+      });
+
+      limparCampos();
+      carregarInstituicoes();
+    };
+
+    // 🔹 Alterar instituição selecionada
+    btnAlterar.onclick = async () => {
+      if (!idSelecionado) return alert("Selecione uma linha para alterar.");
+
+      const atualizado = {
+        orgao: orgao.value,
+        telefone: telefone.value,
+        cnpj: cnpj.value,
+        area: area.value,
+        email: email.value,
+      };
+
+      await fetch(`${API_URL}/${idSelecionado}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(atualizado),
+      });
+
+      limparCampos();
+      carregarInstituicoes();
+    };
+
+    // 🔹 Excluir instituição
+    btnExcluir.onclick = async () => {
+      if (!idSelecionado) return alert("Selecione uma linha para excluir.");
+
+      await fetch(`${API_URL}/${idSelecionado}`, {
+        method: "DELETE",
+      });
+
+      limparCampos();
+      carregarInstituicoes();
+    };
+
+    // 🔹 Limpar campos
+    btnLimpar.onclick = () => {
+      limparCampos();
+    };
+
+    function limparCampos() {
+      orgao.value = "";
+      cnpj.value = "";
+      email.value = "";
+      telefone.value = "";
+      area.value = "";
+      idSelecionado = null;
+
+      document.querySelectorAll("tr.selected").forEach((tr) => {
+        tr.classList.remove("selected");
+      });
+    }
+
+    function selecionarLinha(linha, item) {
+      document.querySelectorAll("tr.selected").forEach((tr) => tr.classList.remove("selected"));
+      linha.classList.add("selected");
+
+      orgao.value = item.orgao;
+      telefone.value = item.telefone;
+      cnpj.value = item.cnpj;
+      area.value = item.area;
+      email.value = item.email;
+      idSelecionado = item.id;
+    }
+
+    // Inicializar
+    carregarInstituicoes();
+  </script>
+</body>
+</html>
