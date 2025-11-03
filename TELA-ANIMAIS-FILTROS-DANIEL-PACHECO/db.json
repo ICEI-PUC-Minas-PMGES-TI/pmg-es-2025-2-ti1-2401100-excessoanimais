@@ -1,0 +1,76 @@
+{
+  "animais": [
+    {
+      "id": 1,
+      "nome": "Luna",
+      "especie": "Cão",
+      "sexo": "Fêmea",
+      "idade": "Adulto",
+      "porte": "Médio",
+      "status": "Vacinado",
+      "cor": "Caramelo",
+      "descricao": "Luna é uma cadela muito carinhosa e tranquila. Adora brincar e se dá bem com crianças e outros animais.",
+      "imagem": "https://placedog.net/600/600?id=1"
+    },
+    {
+      "id": 2,
+      "nome": "Thor",
+      "especie": "Cão",
+      "sexo": "Macho",
+      "idade": "Jovem",
+      "porte": "Grande",
+      "status": "Vacinado",
+      "cor": "Preto",
+      "descricao": "Thor é um cachorro cheio de energia e muito brincalhão. Ideal para famílias ativas que gostam de passeios.",
+      "imagem": "https://placedog.net/600/600?id=2"
+    },
+    {
+      "id": 3,
+      "nome": "Mimi",
+      "especie": "Gato",
+      "sexo": "Fêmea",
+      "idade": "Filhote",
+      "porte": "Pequeno",
+      "status": "Vacinado",
+      "cor": "Cinza",
+      "descricao": "Mimi é uma gatinha curiosa e brincalhona. Adora se esconder em caixas e perseguir bolinhas.",
+      "imagem": "https://placedog.net/600/600?id=10"
+    },
+    {
+      "id": 4,
+      "nome": "Rex",
+      "especie": "Cão",
+      "sexo": "Macho",
+      "idade": "Adulto",
+      "porte": "Grande",
+      "status": "Vacinado",
+      "cor": "Marrom",
+      "descricao": "Rex é um cão muito leal e protetor. Já foi adestrado e sabe vários comandos básicos.",
+      "imagem": "https://placedog.net/600/600?id=3"
+    },
+    {
+      "id": 5,
+      "nome": "Bella",
+      "especie": "Gato",
+      "sexo": "Fêmea",
+      "idade": "Adulto",
+      "porte": "Médio",
+      "status": "Vacinado",
+      "cor": "Branco",
+      "descricao": "Bella é uma gata tranquila e independente. Gosta de carinho no seu próprio tempo e é muito limpa.",
+      "imagem": "https://placedog.net/600/600?id=11"
+    },
+    {
+      "id": 6,
+      "nome": "Bolt",
+      "especie": "Cão",
+      "sexo": "Macho",
+      "idade": "Filhote",
+      "porte": "Pequeno",
+      "status": "Vacinado",
+      "cor": "Branco",
+      "descricao": "Bolt é um filhote muito energético e amoroso. Está aprendendo a fazer suas necessidades no lugar certo.",
+      "imagem": "https://placedog.net/600/600?id=4"
+    }
+  ]
+}
