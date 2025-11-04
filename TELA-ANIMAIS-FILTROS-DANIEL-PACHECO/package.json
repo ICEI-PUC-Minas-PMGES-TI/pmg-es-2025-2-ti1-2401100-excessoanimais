@@ -1,0 +1,13 @@
+{
+  "name": "adocao-animais",
+  "version": "1.0.0",
+  "description": "Site de adoção de animais",
+  "main": "index.html",
+  "scripts": {
+    "server": "json-server --watch db.json --port 3000",
+    "start": "json-server --watch db.json --port 3000 --host 127.0.0.1"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4"
+  }
+}
