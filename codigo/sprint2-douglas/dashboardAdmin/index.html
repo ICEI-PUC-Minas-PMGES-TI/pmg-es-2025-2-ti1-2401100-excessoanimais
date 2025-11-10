@@ -9,13 +9,15 @@
 <body>
   <div class="container">
     <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar">
       <div class="sidebar-header">
         <div class="logo">
           <img src="../../public/assets/images/logo.png" alt="Logo ZooPet" />
         </div>
         <h2>Zoonoses Admin</h2>
+        <button id="menu-toggle" class="menu-toggle">☰</button>
       </div>
+
       <nav>
         <ul>
           <li class="active"><i>🏠</i> Dashboard</li>
@@ -23,18 +25,18 @@
           <li><i>🐾</i> Animais</li>
         </ul>
       </nav>
+
       <div class="logout">
         <a href="#">↩️ Sair</a>
       </div>
     </aside>
 
-    <!-- Main Content -->
+    <!-- Main -->
     <main class="main-content">
       <header class="header">
-        <button id="menu-toggle" class="menu-toggle">☰</button>
         <h1>Dashboard</h1>
         <div class="user-info">
-          <span>Admin User</span>
+          <span>Admin</span>
           <div class="user-icon"></div>
         </div>
       </header>
@@ -42,105 +44,47 @@
       <!-- Cards de Resumo -->
       <section class="cards">
         <div class="card blue">
-          <p>Novas Denúncias</p>
-          <h2 id="novas-denuncias">0</h2>
-          <span>Últimas 24h</span>
+          <p>Total de Denúncias</p>
+          <h2 id="total-denuncias">--</h2>
         </div>
         <div class="card orange">
-          <p>Resgates em Andamento</p>
-          <h2 id="resgates-andamento">0</h2>
-          <span>Em processo</span>
+          <p>Animais para Adoção</p>
+          <h2 id="animais-adocao">--</h2>
         </div>
         <div class="card green">
-          <p>Animais para Adoção</p>
-          <h2 id="animais-adocao">0</h2>
-          <span>Disponíveis</span>
+          <p>Adoções Concluídas</p>
+          <h2 id="adocoes-concluidas">--</h2>
         </div>
         <div class="card purple">
-          <p>Adoções Concluídas</p>
-          <h2 id="adocoes-concluidas">0</h2>
-          <span>Este mês</span>
-        </div>
-      </section>
-
-      <!-- Resumo Semanal -->
-      <section class="resumo-semanal">
-        <h2>Resumo Semanal</h2>
-        <div class="resumo-cards">
-          <div class="resumo blue">
-            <h3 id="denuncias-recebidas">47</h3>
-            <p>Denúncias Recebidas</p>
-            <small>+12% vs semana anterior</small>
-          </div>
-          <div class="resumo green">
-            <h3 id="animais-resgatados">35</h3>
-            <p>Animais Resgatados</p>
-            <small>+8% vs semana anterior</small>
-          </div>
-          <div class="resumo purple">
-            <h3 id="adocoes-realizadas">28</h3>
-            <p>Adoções Realizadas</p>
-            <small>+15% vs semana anterior</small>
-          </div>
+          <p>Resgates em Andamento</p>
+          <h2 id="resgates-andamento">--</h2>
         </div>
       </section>
 
       <!-- Últimas Denúncias -->
       <section class="ultimas-denuncias">
         <h2>Últimas Denúncias</h2>
-        <div class="table-container">
-          <table id="tabela-denuncias">
-            <thead>
-              <tr>
-                <th>Protocolo</th>
-                <th>Endereço</th>
-                <th>Data</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
+        <table id="tabela-denuncias">
+          <thead>
+            <tr>
+              <th>Endereço</th>
+              <th>Tipo</th>
+              <th>Condição</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </section>
 
-      <!-- Alertas e Conquistas -->
-      <section class="bottom-section">
-        <div class="alertas">
-          <h2>Alertas Importantes</h2>
-          <div class="alert-box orange">
-            <p><strong>3 denúncias urgentes pendentes</strong></p>
-            <small>Animais feridos aguardando resgate há mais de 4h</small>
-          </div>
-          <div class="alert-box yellow">
-            <p><strong>Capacidade do abrigo: 85%</strong></p>
-            <small>Considere acelerar o processo de adoção</small>
-          </div>
-        </div>
-
-        <div class="conquistas">
-          <h2>Conquistas Recentes</h2>
-          <div class="conquista green">
-            <p><strong>Meta mensal de adoções atingida!</strong></p>
-            <small>156 animais encontraram novos lares este mês</small>
-          </div>
-          <div class="conquista blue">
-            <p><strong>Novo recorde de resgates</strong></p>
-            <small>47 animais resgatados na última semana</small>
-          </div>
-        </div>
+      <!-- Alertas -->
+      <section class="alertas">
+        <h2>Alertas Importantes</h2>
+        <div id="alertas-container"></div>
       </section>
     </main>
   </div>
 
   <script src="script.js"></script>
-  <script>
-    // Menu sanduíche
-    const toggleBtn = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('active');
-    });
-  </script>
 </body>
 </html>

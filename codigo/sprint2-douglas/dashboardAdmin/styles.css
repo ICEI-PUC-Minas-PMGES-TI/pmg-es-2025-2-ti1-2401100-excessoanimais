@@ -1,4 +1,4 @@
-/* ===== Reset ===== */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,15 +6,16 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-/* ===== Layout Principal ===== */
-.container {
-  display: flex;
-  height: 100vh;
+body {
   background-color: #f5f7fa;
-  overflow: hidden;
 }
 
-/* ===== Sidebar ===== */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
 .sidebar {
   background-color: #223046;
   color: #fff;
@@ -28,12 +29,27 @@
 
 .sidebar-header {
   text-align: center;
-  margin-bottom: 40px;
+  position: relative;
+}
+
+.sidebar-header .logo img {
+  width: 70px;
 }
 
 .sidebar-header h2 {
-  font-size: 18px;
   margin-top: 8px;
+}
+
+.menu-toggle {
+  display: none;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
 }
 
 .sidebar nav ul {
@@ -66,37 +82,16 @@
   text-decoration: none;
 }
 
-.logout a:hover {
-  text-decoration: underline;
-}
-
-/* ===== Main Content ===== */
 .main-content {
   flex: 1;
   padding: 30px;
-  overflow-y: auto;
 }
 
-/* ===== Header ===== */
+/* Header */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #223046;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .user-icon {
@@ -106,7 +101,7 @@
   border-radius: 50%;
 }
 
-/* ===== Cards ===== */
+/* Cards */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -115,97 +110,27 @@
 }
 
 .card {
-  background-color: #fff;
+  background: #fff;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-left: 6px solid;
 }
 
-.card p {
-  font-size: 15px;
-  color: #333;
-}
+.blue { border-color: #8cb8ff; }
+.orange { border-color: #fdbb76; }
+.green { border-color: #9dc8a9; }
+.purple { border-color: #c5a1f7; }
 
-.card h2 {
-  font-size: 32px;
-  margin: 10px 0;
-}
-
-.card span {
-  font-size: 12px;
-  color: #666;
-}
-
-/* Ajuste da logo na barra lateral */
-.sidebar .logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.sidebar .logo img {
-  width: 80px;           /* tamanho controlado */
-  height: auto;
-  max-width: 100%;
-  object-fit: contain;   /* evita distorção */
-  margin-bottom: 0.3rem;
-}
-
-.sidebar .logo h1 {
-  font-size: 1.2rem;
-  color: #fff;
-  text-align: center;
-}
-
-
-/* Cores dos cards */
-.blue { border-left: 6px solid #8cb8ff; }
-.orange { border-left: 6px solid #fdbb76; }
-.green { border-left: 6px solid #9dc8a9; }
-.purple { border-left: 6px solid #c5a1f7; }
-
-/* ===== Resumo Semanal ===== */
-.resumo-semanal {
-  margin-top: 40px;
-}
-
-.resumo-cards {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 15px;
-}
-
-.resumo {
-  flex: 1;
-  min-width: 200px;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.resumo h3 { font-size: 28px; }
-.resumo p { color: #333; }
-.resumo small { color: #666; }
-
-/* ===== Últimas Denúncias ===== */
+/* Tabela */
 .ultimas-denuncias {
   margin-top: 40px;
-}
-
-.table-container {
-  width: 100%;
-  overflow-x: auto;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 th, td {
@@ -214,55 +139,31 @@ th, td {
   border-bottom: 1px solid #e3e3e3;
 }
 
-.status {
-  padding: 5px 10px;
-  border-radius: 12px;
-  font-size: 13px;
-  color: #fff;
-}
-
-.status.pendente { background-color: #fdbb76; }
-.status.em-andamento { background-color: #8cb8ff; }
-.status.concluído { background-color: #9dc8a9; }
-
-/* ===== Alertas e Conquistas ===== */
-.bottom-section {
+/* Alertas */
+.alertas {
   margin-top: 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
 }
 
-.alert-box,
-.conquista {
-  background-color: #fff;
+.alert-box {
+  background: #fff;
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   margin-top: 10px;
+  border-left: 5px solid;
 }
 
-.alert-box.orange { border-left: 5px solid #fdbb76; }
-.alert-box.yellow { border-left: 5px solid #ffe69b; }
+.alert-orange { border-color: #fdbb76; }
+.alert-red { border-color: #ff7b7b; }
+.alert-green { border-color: #9dc8a9; }
 
-.conquista.green { border-left: 5px solid #9dc8a9; }
-.conquista.blue { border-left: 5px solid #8cb8ff; }
-
-/* ===== Responsividade ===== */
-@media (max-width: 1024px) {
-  .bottom-section {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
+/* Responsividade */
+@media (max-width: 900px) {
   .sidebar {
     position: fixed;
-    top: 0;
-    left: 0;
     height: 100%;
     transform: translateX(-100%);
-    z-index: 1000;
+    z-index: 999;
   }
 
   .sidebar.active {
@@ -275,27 +176,5 @@ th, td {
 
   .main-content {
     padding: 20px;
-  }
-
-  table {
-    font-size: 14px;
-  }
-
-  .cards {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 500px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-  th, td {
-    padding: 8px;
-  }
-
-  .header h1 {
-    font-size: 18px;
   }
 }

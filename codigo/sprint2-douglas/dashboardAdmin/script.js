@@ -1,50 +1,84 @@
-const dashboardData = {
-  resumo: {
-    novasDenuncias: 12,
-    resgatesEmAndamento: 8,
-    animaisParaAdocao: 23,
-    adocoesConcluidas: 156
-  },
-  resumoSemanal: {
-    denunciasRecebidas: 47,
-    animaisResgatados: 35,
-    adocoesRealizadas: 28
-  },
-  denuncias: [
-    { protocolo: "ZP2024001", endereco: "Rua das Flores, 123 - Centro", data: "12/10/2024", status: "Pendente" },
-    { protocolo: "ZP2024002", endereco: "Av. Principal, 456 - Jardim", data: "12/10/2024", status: "Em Andamento" },
-    { protocolo: "ZP2024003", endereco: "Rua do Parque, 789 - Vila Nova", data: "11/10/2024", status: "Concluído" }
-  ],
-  alertas: {
-    denunciasUrgentes: 3,
-    capacidadeAbrigo: 85
-  },
-  conquistas: {
-    metaAdocoesAtingida: true,
-    novoRecordeResgates: true
-  }
-};
+const API_URL = "http://localhost:3000";
 
-// Exemplo: preenchendo os elementos
-document.getElementById("novas-denuncias").textContent = dashboardData.resumo.novasDenuncias;
-document.getElementById("resgates-andamento").textContent = dashboardData.resumo.resgatesEmAndamento;
-document.getElementById("animais-adocao").textContent = dashboardData.resumo.animaisParaAdocao;
-document.getElementById("adocoes-concluidas").textContent = dashboardData.resumo.adocoesConcluidas;
-
-// Tabela
-const tableBody = document.querySelector("#tabela-denuncias tbody");
-dashboardData.denuncias.forEach(d => {
-  const row = `
-    <tr>
-      <td>${d.protocolo}</td>
-      <td>${d.endereco}</td>
-      <td>${d.data}</td>
-      <td><span class="status ${d.status.toLowerCase().replace(' ', '-')}">${d.status}</span></td>
-    </tr>`;
-  tableBody.innerHTML += row;
+// Toggle menu mobile
+const menuToggle = document.getElementById("menu-toggle");
+const sidebar = document.querySelector(".sidebar");
+menuToggle?.addEventListener("click", () => {
+  sidebar.classList.toggle("active");
 });
 
-setInterval(() => {
-  dashboardData.resumo.novasDenuncias++;
-  document.getElementById("novas-denuncias").textContent = dashboardData.resumo.novasDenuncias;
-}, 5000);
+// Carrega dashboard
+async function carregarDashboard() {
+  try {
+    const [denunciasRes, animaisRes, adocoesRes, resgatesRes] = await Promise.all([
+      fetch(`${API_URL}/denuncias`),
+      fetch(`${API_URL}/animais`),
+      fetch(`${API_URL}/adocoes`),
+      fetch(`${API_URL}/resgates`)
+    ]);
+
+    const denuncias = await denunciasRes.json();
+    const animais = await animaisRes.json();
+    const adocoes = await adocoesRes.json();
+    const resgates = await resgatesRes.json();
+
+    // ==== Atualiza cards ====
+    document.getElementById("total-denuncias").textContent = denuncias.length;
+    document.getElementById("animais-adocao").textContent = animais.filter(a => a.status === "Vacinado").length;
+    document.getElementById("adocoes-concluidas").textContent = adocoes.length;
+    document.getElementById("resgates-andamento").textContent = resgates.filter(r => r.status === "Em Andamento").length;
+
+    // ==== Últimas denúncias ====
+    const tbody = document.querySelector("#tabela-denuncias tbody");
+    tbody.innerHTML = "";
+    const ultimas = denuncias.slice(-5).reverse();
+    ultimas.forEach(d => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${d.endereco}</td>
+        <td>${d.tipo || "-"}</td>
+        <td>${d.condicao || "-"}</td>
+        <td>${d.dataEnvio || "-"}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    // ==== Alertas ====
+    const alertasContainer = document.getElementById("alertas-container");
+    alertasContainer.innerHTML = "";
+
+    if (denuncias.length > 0) {
+      const alertaPendentes = document.createElement("div");
+      alertaPendentes.className = "alert-box alert-orange";
+      alertaPendentes.innerHTML = `
+        <p><strong>${denuncias.length} denúncias registradas</strong></p>
+        <small>Verifique as mais recentes e priorize as urgentes</small>
+      `;
+      alertasContainer.appendChild(alertaPendentes);
+    }
+
+    const animaisDisponiveis = animais.filter(a => a.status === "Vacinado").length;
+    if (animaisDisponiveis / animais.length > 0.7) {
+      const alertaAbrigo = document.createElement("div");
+      alertaAbrigo.className = "alert-box alert-red";
+      alertaAbrigo.innerHTML = `
+        <p><strong>Capacidade do abrigo alta!</strong></p>
+        <small>Considere acelerar processos de adoção</small>
+      `;
+      alertasContainer.appendChild(alertaAbrigo);
+    }
+
+    const alertaSucesso = document.createElement("div");
+    alertaSucesso.className = "alert-box alert-green";
+    alertaSucesso.innerHTML = `
+      <p><strong>${adocoes.length} adoções concluídas</strong></p>
+      <small>Parabéns pela meta atingida!</small>
+    `;
+    alertasContainer.appendChild(alertaSucesso);
+
+  } catch (err) {
+    console.error("Erro ao carregar dados:", err);
+  }
+}
+
+carregarDashboard();
