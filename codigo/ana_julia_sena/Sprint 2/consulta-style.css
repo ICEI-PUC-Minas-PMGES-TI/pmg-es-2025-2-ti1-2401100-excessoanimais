@@ -1,4 +1,4 @@
-/* Reset */
+/* ======= RESET ======= */
 * {
   margin: 0;
   padding: 0;
@@ -64,96 +64,80 @@ nav a {
   color: #0d3b2e;
 }
 
-/* ======= CONTEÚDO ======= */
-.success-section {
+/* ======= SEÇÃO PRINCIPAL ======= */
+.status-section {
   max-width: 700px;
   margin: 60px auto;
   text-align: center;
 }
 
-.icon-success {
-  font-size: 45px;
-  color: #2fa86a;
-  background-color: #e9f9ef;
-  border-radius: 50%;
-  display: inline-block;
-  padding: 15px 20px;
-}
-
-.success-section h2 {
-  margin-top: 20px;
+.status-section h2 {
   color: #0d3b2e;
+  margin-bottom: 15px;
 }
 
 .intro-text {
-  margin: 10px 0 25px;
+  color: #555;
+  margin-bottom: 25px;
 }
 
-.box {
+.status-box {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 6px;
-  padding: 20px;
-  margin-bottom: 25px;
+  padding: 25px;
   text-align: left;
 }
 
-.box h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+.status-box label {
+  font-weight: bold;
   color: #0d3b2e;
 }
 
-.protocol {
-  font-size: 22px;
-  font-weight: bold;
-  background-color: #f5f5f5;
-  border-radius: 5px;
+.status-box input {
+  width: 100%;
   padding: 10px;
-  text-align: center;
-  margin: 8px 0;
-}
-
-.small {
-  font-size: 13px;
-  color: #555;
-  text-align: center;
-}
-
-ol {
-  margin-left: 20px;
-  color: #333;
-}
-
-ol li {
-  margin: 10px 0;
-}
-
-/* ======= BOTÕES ======= */
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.btn-primary, .btn-secondary {
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
+  margin: 8px 0 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 .btn-primary {
   background-color: #0d3b2e;
   color: #fff;
   border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.btn-secondary {
-  background-color: transparent;
+.btn-primary:hover {
+  background-color: #14593f;
+}
+
+/* ======= RESULTADO ======= */
+.resultado {
+  margin-top: 30px;
+}
+
+.resultado-card {
+  background-color: #e9f9ef;
+  border-left: 6px solid #2fa86a;
+  border-radius: 6px;
+  padding: 20px;
+  text-align: left;
+}
+
+.resultado-card h3 {
   color: #0d3b2e;
-  border: 1px solid #0d3b2e;
+  margin-bottom: 8px;
+}
+
+.resultado-card p {
+  margin-bottom: 10px;
+  font-size: 15px;
 }
 
 /* ======= RODAPÉ ======= */
@@ -161,7 +145,7 @@ footer {
   background-color: #0d3b2e;
   color: #fff;
   padding: 40px 0;
-  margin-top: 50px;
+  margin-top: 60px;
 }
 
 .footer-container {
@@ -171,7 +155,6 @@ footer {
   margin: 0 auto;
   flex-wrap: wrap;
 }
-
 
 footer h4 {
   margin-bottom: 10px;

@@ -34,7 +34,7 @@
 
       <div class="box">
         <h3> Número do Protocolo</h3>
-        <div class="protocol">W9NRJ5UNE</div>
+        <div class="protocol" id="protocolo">------</div>
         <p class="small">Guarde este número para consultar o status da sua denúncia</p>
       </div>
 
@@ -55,8 +55,8 @@
       </div>
 
       <div class="buttons">
-        <button class="btn-primary">Consultar Status</button>
-        <button class="btn-secondary">Voltar ao Início</button>
+        <button class="btn-primary" onclick="consultarStatus()">Consultar Status</button>
+        <button class="btn-secondary" onclick="voltarInicio()">Voltar ao Início</button>
       </div>
     </section>
   </main>
@@ -88,6 +88,30 @@
       </div>
     </div>
   </footer>
+  <script>
+    function gerarProtocolo() {
+      const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let codigo = "";
+      for (let i = 0; i < 9; i++) {
+        codigo += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+      }
+      return codigo;
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const protocolo = document.getElementById("protocolo");
+      protocolo.textContent = gerarProtocolo();
+    });
+
+    function consultarStatus() {
+      alert("Redirecionando para consulta de status...");
+      window.location.href = "consulta-status.html";
+    }
+
+    function voltarInicio() {
+      window.location.href = "index.html";
+    }
+  </script>
 
 </body>
 </html>
