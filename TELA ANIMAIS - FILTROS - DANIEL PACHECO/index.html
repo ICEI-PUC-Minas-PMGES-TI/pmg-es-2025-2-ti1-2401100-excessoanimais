@@ -27,11 +27,23 @@
         position: relative;
       }
 
-      .logo {
+      .logo-container {
         position: absolute;
         left: 20px;
         top: 50%;
         transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-image {
+        height: 40px;
+        width: auto;
+        border-radius: 6px;
+      }
+
+      .logo-text {
         font-size: 1.8rem;
         font-weight: bold;
         color: white;
@@ -95,13 +107,35 @@
 
       #animal-count {
         color: #4a90e2;
-        margin-bottom: 25px;
+        margin-bottom: 15px;
         font-size: 1rem;
         font-weight: 600;
         text-align: center;
         background-color: #f0f7ff;
         padding: 8px;
         border-radius: 6px;
+      }
+
+      .active-filters {
+        background-color: #e8f5e8;
+        color: #2d5016;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        text-align: center;
+        border-left: 4px solid #4caf50;
+      }
+
+      .no-filters {
+        background-color: #fff3cd;
+        color: #856404;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        text-align: center;
+        border-left: 4px solid #ffc107;
       }
 
       .filter-group {
@@ -113,19 +147,40 @@
         color: #2c3e50;
         font-size: 1.1rem;
         font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .filter-group h3::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background-color: #eaeaea;
+        margin-left: 8px;
+      }
+
+      .filter-options {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
       }
 
       .filter-group label {
         display: block;
         margin-bottom: 10px;
         cursor: pointer;
-        padding: 5px 0;
+        padding: 8px 12px;
         transition: all 0.2s;
-        border-radius: 4px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
       }
 
       .filter-group label:hover {
-        background-color: #f5f9ff;
+        background-color: #e3f2fd;
+        transform: translateX(4px);
       }
 
       .filter-group input {
@@ -135,37 +190,54 @@
 
       .filter-buttons {
         display: flex;
-        gap: 12px;
-        margin-top: 10px;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
       }
 
       .filter-buttons button {
-        flex: 1;
-        padding: 12px;
+        padding: 14px;
         border: none;
         border-radius: 8px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s;
+        font-size: 1rem;
       }
 
       #apply-filters {
         background-color: #4a90e2;
         color: white;
+        box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
       }
 
       #apply-filters:hover {
         background-color: #3a7bc8;
         transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+      }
+
+      #apply-filters:active {
+        transform: translateY(0);
       }
 
       #clear-filters {
-        background-color: #e9ecef;
-        color: #495057;
+        background-color: #6c757d;
+        color: white;
       }
 
       #clear-filters:hover {
-        background-color: #dee2e6;
+        background-color: #5a6268;
+        transform: translateY(-2px);
+      }
+
+      #show-all {
+        background-color: #28a745;
+        color: white;
+      }
+
+      #show-all:hover {
+        background-color: #218838;
         transform: translateY(-2px);
       }
 
@@ -238,6 +310,21 @@
         color: #666;
         grid-column: 1 / -1;
         font-size: 1.1rem;
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        border: 2px dashed #dee2e6;
+      }
+
+      .results-info {
+        text-align: center;
+        padding: 15px;
+        color: #4a90e2;
+        grid-column: 1 / -1;
+        font-size: 1rem;
+        background-color: #f0f7ff;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border-left: 4px solid #4a90e2;
       }
 
       footer {
@@ -248,21 +335,10 @@
         margin-top: 40px;
       }
 
-      #login-link {
-        color: #63b3ed;
-        text-decoration: none;
-        font-weight: 600;
+      .footer-text {
         font-size: 1.1rem;
-        transition: all 0.3s;
-        padding: 10px 20px;
-        border: 2px solid #63b3ed;
-        border-radius: 8px;
-        display: inline-block;
-      }
-
-      #login-link:hover {
-        background-color: #63b3ed;
-        color: white;
+        font-weight: 600;
+        color: #63b3ed;
       }
 
       @media (max-width: 900px) {
@@ -280,11 +356,12 @@
           grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
 
-        .logo {
+        .logo-container {
           position: static;
           transform: none;
           text-align: center;
           margin-bottom: 15px;
+          justify-content: center;
         }
       }
 
@@ -300,12 +377,28 @@
         header p {
           font-size: 1rem;
         }
+
+        .logo-container {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .filter-buttons {
+          flex-direction: column;
+        }
       }
     </style>
   </head>
   <body>
     <header>
-      <div class="logo">ZOOPET</div>
+      <div class="logo-container">
+        <img
+          src="https://i.ibb.co/C5NzfJV0/logo-zoopet.png"
+          alt="Zoopet Logo"
+          class="logo-image"
+        />
+        <div class="logo-text">ZOOPET</div>
+      </div>
       <h1>Encontre seu novo melhor amigo</h1>
       <p>
         Todos estes animais foram resgatados, tratados e estão prontos para uma
@@ -318,40 +411,48 @@
         <h2>Filtros</h2>
         <input type="text" id="search" placeholder="Buscar por nome..." />
         <p id="animal-count">6 animais encontrados</p>
+        <div id="filter-status" class="no-filters">
+          ⓘ Selecione os filtros e clique em "Aplicar Filtros"
+        </div>
 
-        <div class="filter-group" id="species-group">
+        <div class="filter-group">
           <h3>Espécie</h3>
-          <label><input type="checkbox" value="Cão" checked /> Cão</label>
-          <label><input type="checkbox" value="Gato" checked /> Gato</label>
+          <div class="filter-options">
+            <label><input type="checkbox" value="Cão" /> Cão</label>
+            <label><input type="checkbox" value="Gato" /> Gato</label>
+          </div>
         </div>
 
-        <div class="filter-group" id="sex-group">
+        <div class="filter-group">
           <h3>Sexo</h3>
-          <label><input type="checkbox" value="Fêmea" checked /> Fêmea</label>
-          <label><input type="checkbox" value="Macho" checked /> Macho</label>
+          <div class="filter-options">
+            <label><input type="checkbox" value="Fêmea" /> Fêmea</label>
+            <label><input type="checkbox" value="Macho" /> Macho</label>
+          </div>
         </div>
 
-        <div class="filter-group" id="age-group">
+        <div class="filter-group">
           <h3>Idade</h3>
-          <label
-            ><input type="checkbox" value="Filhote" checked /> Filhote</label
-          >
-          <label><input type="checkbox" value="Jovem" checked /> Jovem</label>
-          <label><input type="checkbox" value="Adulto" checked /> Adulto</label>
+          <div class="filter-options">
+            <label><input type="checkbox" value="Filhote" /> Filhote</label>
+            <label><input type="checkbox" value="Jovem" /> Jovem</label>
+            <label><input type="checkbox" value="Adulto" /> Adulto</label>
+          </div>
         </div>
 
-        <div class="filter-group" id="size-group">
+        <div class="filter-group">
           <h3>Porte</h3>
-          <label
-            ><input type="checkbox" value="Pequeno" checked /> Pequeno</label
-          >
-          <label><input type="checkbox" value="Médio" checked /> Médio</label>
-          <label><input type="checkbox" value="Grande" checked /> Grande</label>
+          <div class="filter-options">
+            <label><input type="checkbox" value="Pequeno" /> Pequeno</label>
+            <label><input type="checkbox" value="Médio" /> Médio</label>
+            <label><input type="checkbox" value="Grande" /> Grande</label>
+          </div>
         </div>
 
         <div class="filter-buttons">
           <button id="apply-filters">Aplicar Filtros</button>
-          <button id="clear-filters">Limpar Filtros</button>
+          <button id="show-all">Ver Todos</button>
+          <button id="clear-filters">Limpar Seleção</button>
         </div>
       </aside>
 
@@ -363,7 +464,7 @@
     </main>
 
     <footer>
-      <a href="#" id="login-link">Login / Cadastrar</a>
+      <div class="footer-text">ZOOPET</div>
     </footer>
 
     <script>
@@ -371,11 +472,13 @@
         const animalsContainer = document.getElementById("animals-container");
         const searchInput = document.getElementById("search");
         const animalCount = document.getElementById("animal-count");
+        const filterStatus = document.getElementById("filter-status");
         const filterCheckboxes = document.querySelectorAll(
           '.filter-group input[type="checkbox"]'
         );
         const applyFiltersBtn = document.getElementById("apply-filters");
         const clearFiltersBtn = document.getElementById("clear-filters");
+        const showAllBtn = document.getElementById("show-all");
 
         let animals = [
           {
@@ -459,17 +562,31 @@
         ];
 
         let filteredAnimals = [...animals];
+        let activeFiltersCount = 0;
 
         renderAnimals();
+        updateFilterStatus();
 
         function renderAnimals() {
           animalsContainer.innerHTML = "";
 
           if (filteredAnimals.length === 0) {
-            animalsContainer.innerHTML =
-              '<div class="no-results">Nenhum animal encontrado com os filtros selecionados.</div>';
+            animalsContainer.innerHTML = `
+              <div class="no-results">
+                <h3>Nenhum animal encontrado</h3>
+                <p>Tente ajustar os filtros ou buscar por outro nome.</p>
+              </div>
+            `;
             animalCount.textContent = "0 animais encontrados";
             return;
+          }
+
+          // Adiciona informação sobre filtros ativos
+          if (activeFiltersCount > 0) {
+            const resultsInfo = document.createElement("div");
+            resultsInfo.className = "results-info";
+            resultsInfo.textContent = `Mostrando ${filteredAnimals.length} animal(is) com os filtros aplicados`;
+            animalsContainer.appendChild(resultsInfo);
           }
 
           filteredAnimals.forEach((animal) => {
@@ -486,24 +603,21 @@
             ].filter(Boolean);
 
             card.innerHTML = `
-                        <img src="${animal.imagem}" alt="${
+              <img src="${animal.imagem}" alt="${
               animal.nome
             }" class="animal-image" onerror="this.src='https://via.placeholder.com/600x400/4a90e2/ffffff?text=Imagem+Indisponível'">
-                        <div class="animal-info">
-                            <h3>${animal.nome}</h3>
-                            <p class="animal-description">${
-                              animal.descricao
-                            }</p>
-                            <div class="animal-details">
-                                ${details
-                                  .map(
-                                    (detail) =>
-                                      `<span class="animal-detail">${detail}</span>`
-                                  )
-                                  .join("")}
-                            </div>
-                        </div>
-                    `;
+              <div class="animal-info">
+                <h3>${animal.nome}</h3>
+                <p class="animal-description">${animal.descricao}</p>
+                <div class="animal-details">
+                  ${details
+                    .map(
+                      (detail) => `<span class="animal-detail">${detail}</span>`
+                    )
+                    .join("")}
+                </div>
+              </div>
+            `;
 
             animalsContainer.appendChild(card);
           });
@@ -511,37 +625,70 @@
           animalCount.textContent = `${filteredAnimals.length} animais encontrados`;
         }
 
+        function updateFilterStatus() {
+          const selectedCount = document.querySelectorAll(
+            '.filter-group input[type="checkbox"]:checked'
+          ).length;
+          const searchTerm = searchInput.value.trim();
+
+          activeFiltersCount = selectedCount + (searchTerm ? 1 : 0);
+
+          if (activeFiltersCount === 0) {
+            filterStatus.className = "no-filters";
+            filterStatus.innerHTML =
+              'Selecione os filtros e clique em "Aplicar Filtros"';
+          } else {
+            filterStatus.className = "active-filters";
+            filterStatus.innerHTML = `${selectedCount} filtro(s) selecionado(s) ${
+              searchTerm ? "+ busca por nome" : ""
+            }`;
+          }
+        }
+
         function applyFilters() {
-          const searchTerm = searchInput.value.toLowerCase();
+          const searchTerm = searchInput.value.toLowerCase().trim();
 
           const selectedSpecies = getSelectedCheckboxValues("species-group");
           const selectedSex = getSelectedCheckboxValues("sex-group");
           const selectedAge = getSelectedCheckboxValues("age-group");
           const selectedSize = getSelectedCheckboxValues("size-group");
 
-          filteredAnimals = animals.filter((animal) => {
-            const matchesSearch = animal.nome
-              .toLowerCase()
-              .includes(searchTerm);
-            const matchesSpecies =
-              selectedSpecies.length === 0 ||
-              selectedSpecies.includes(animal.especie);
-            const matchesSex =
-              selectedSex.length === 0 || selectedSex.includes(animal.sexo);
-            const matchesAge =
-              selectedAge.length === 0 || selectedAge.includes(animal.idade);
-            const matchesSize =
-              selectedSize.length === 0 || selectedSize.includes(animal.porte);
+          // Se nenhum filtro foi selecionado, mostra todos os animais
+          if (
+            selectedSpecies.length === 0 &&
+            selectedSex.length === 0 &&
+            selectedAge.length === 0 &&
+            selectedSize.length === 0 &&
+            searchTerm === ""
+          ) {
+            filteredAnimals = [...animals];
+          } else {
+            filteredAnimals = animals.filter((animal) => {
+              const matchesSearch =
+                searchTerm === "" ||
+                animal.nome.toLowerCase().includes(searchTerm);
+              const matchesSpecies =
+                selectedSpecies.length === 0 ||
+                selectedSpecies.includes(animal.especie);
+              const matchesSex =
+                selectedSex.length === 0 || selectedSex.includes(animal.sexo);
+              const matchesAge =
+                selectedAge.length === 0 || selectedAge.includes(animal.idade);
+              const matchesSize =
+                selectedSize.length === 0 ||
+                selectedSize.includes(animal.porte);
 
-            return (
-              matchesSearch &&
-              matchesSpecies &&
-              matchesSex &&
-              matchesAge &&
-              matchesSize
-            );
-          });
+              return (
+                matchesSearch &&
+                matchesSpecies &&
+                matchesSex &&
+                matchesAge &&
+                matchesSize
+              );
+            });
+          }
 
+          updateFilterStatus();
           renderAnimals();
         }
 
@@ -554,22 +701,35 @@
         }
 
         function clearFilters() {
-          searchInput.value = "";
-
+          // Desmarca todas as checkboxes
           filterCheckboxes.forEach((checkbox) => {
-            checkbox.checked = true;
+            checkbox.checked = false;
           });
 
+          updateFilterStatus();
+        }
+
+        function showAllAnimals() {
+          searchInput.value = "";
+          clearFilters();
           filteredAnimals = [...animals];
           renderAnimals();
         }
 
-        searchInput.addEventListener("input", applyFilters);
+        // Event Listeners
         applyFiltersBtn.addEventListener("click", applyFilters);
         clearFiltersBtn.addEventListener("click", clearFilters);
+        showAllBtn.addEventListener("click", showAllAnimals);
 
+        // Atualiza status quando checkboxes mudam
         filterCheckboxes.forEach((checkbox) => {
-          checkbox.addEventListener("change", applyFilters);
+          checkbox.addEventListener("change", updateFilterStatus);
+        });
+
+        // A busca ainda funciona em tempo real
+        searchInput.addEventListener("input", function () {
+          updateFilterStatus();
+          applyFilters();
         });
       });
     </script>
