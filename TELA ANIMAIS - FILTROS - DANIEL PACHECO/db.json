@@ -1,53 +1,4 @@
 {
-  "usuarios": [
-    {
-      "tipoUsuario": "comum",
-      "nome": "Douglas Freitas",
-      "email": "douglasamf14@gmail.com",
-      "senha": "14Douglas$$",
-      "telefone": "31971959202",
-      "cep": "32470000",
-      "endereco": "Rua Fernando Sabino, 06, Serra dos Bandeirantes, Mário Campos",
-      "bio": "",
-      "animaisAdotados": [],
-      "animaisCurtidos": [],
-      "denunciasFeitas": [],
-      "id": 1
-    }
-  ],
-  "denuncias": [
-    {
-      "id": 1,
-      "endereco": "Rua Justino Carneiro,63,Inconfidencia",
-      "referencia": "Av. Abilio MAchado",
-      "tipo": "Cachorro",
-      "porte": "Pequeno",
-      "condicao": "Ferido",
-      "observacoes": "Pata ferida",
-      "nome": "Pedro Henrique Pinho Silva",
-      "telefone": "31987013977",
-      "email": "phpspinho@gmail.com",
-      "dataEnvio": "26/10/2025, 21:55:57"
-    }
-  ],
-  "instituicoes": [
-    {
-      "id": "1",
-      "orgao": "Centro de Controle de Zoonoses",
-      "telefone": "(31) 3221-4567",
-      "cnpj": "91.587.653/0001-74",
-      "area": "Savassi",
-      "email": "ctzoonoses.bh@gmail.com"
-    },
-    {
-      "orgao": "Centro de Controle de Zoonoses",
-      "telefone": "(31) 3221-4567",
-      "cnpj": "91.587.653/0001-74",
-      "area": "Buritis",
-      "email": "ctzoonoses.bh@gmail.com",
-      "id": "5f19"
-    }
-  ],
   "animais": [
     {
       "id": 1,
@@ -120,34 +71,6 @@
       "cor": "Branco",
       "descricao": "Bolt é um filhote muito energético e amoroso. Está aprendendo a fazer suas necessidades no lugar certo.",
       "imagem": "https://placedog.net/600/600?id=4"
-    }
-  ],
-  "adocoes": [
-    {
-      "id": 1,
-      "animal_id": 2,
-      "data": "2025-10-15",
-      "adotante": "Maria Silva"
-    },
-    {
-      "id": 2,
-      "animal_id": 4,
-      "data": "2025-11-02",
-      "adotante": "João Pereira"
-    }
-  ],
-  "resgates": [
-    {
-      "id": 1,
-      "animal": "Bolt",
-      "data": "2025-11-01",
-      "status": "Concluído"
-    },
-    {
-      "id": 2,
-      "animal": "Lua",
-      "data": "2025-11-06",
-      "status": "Em Andamento"
     }
   ]
 }

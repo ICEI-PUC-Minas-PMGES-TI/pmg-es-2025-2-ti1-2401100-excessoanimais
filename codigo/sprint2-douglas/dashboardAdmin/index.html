@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zoonoses Admin Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <img src="../../public/assets/images/logo.png" alt="Logo ZooPet" />
+        </div>
+        <h2>Zoonoses Admin</h2>
+        <button id="menu-toggle" class="menu-toggle">☰</button>
+      </div>
+
+      <nav>
+        <ul>
+          <li class="active"><i>🏠</i> Dashboard</li>
+          <li><i>📋</i> Denúncias</li>
+          <li><i>🐾</i> Animais</li>
+        </ul>
+      </nav>
+
+      <div class="logout">
+        <a href="#">↩️ Sair</a>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+      <header class="header">
+        <h1>Dashboard</h1>
+        <div class="user-info">
+          <span>Admin</span>
+          <div class="user-icon"></div>
+        </div>
+      </header>
+
+      <!-- Cards de Resumo -->
+      <section class="cards">
+        <div class="card blue">
+          <p>Total de Denúncias</p>
+          <h2 id="total-denuncias">--</h2>
+        </div>
+        <div class="card orange">
+          <p>Animais para Adoção</p>
+          <h2 id="animais-adocao">--</h2>
+        </div>
+        <div class="card green">
+          <p>Adoções Concluídas</p>
+          <h2 id="adocoes-concluidas">--</h2>
+        </div>
+        <div class="card purple">
+          <p>Resgates em Andamento</p>
+          <h2 id="resgates-andamento">--</h2>
+        </div>
+      </section>
+
+      <!-- Últimas Denúncias -->
+      <section class="ultimas-denuncias">
+        <h2>Últimas Denúncias</h2>
+        <table id="tabela-denuncias">
+          <thead>
+            <tr>
+              <th>Endereço</th>
+              <th>Tipo</th>
+              <th>Condição</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <!-- Alertas -->
+      <section class="alertas">
+        <h2>Alertas Importantes</h2>
+        <div id="alertas-container"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

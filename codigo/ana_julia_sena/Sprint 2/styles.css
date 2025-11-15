@@ -1,0 +1,196 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f9fafb;
+  color: #222;
+}
+
+/* ======= CABEÇALHO ======= */
+header {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  background-color: #fff;
+}
+
+.container-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo img {
+  width: 28px;
+  height: 28px;
+}
+
+.logo h1 {
+  font-size: 18px;
+  color: #0d3b2e;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.btn-login {
+  background-color: #fff;
+  border: 1px solid #0d3b2e;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #0d3b2e;
+}
+
+/* ======= CONTEÚDO ======= */
+.success-section {
+  max-width: 700px;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.icon-success {
+  font-size: 45px;
+  color: #2fa86a;
+  background-color: #e9f9ef;
+  border-radius: 50%;
+  display: inline-block;
+  padding: 15px 20px;
+}
+
+.success-section h2 {
+  margin-top: 20px;
+  color: #0d3b2e;
+}
+
+.intro-text {
+  margin: 10px 0 25px;
+}
+
+.box {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.box h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #0d3b2e;
+}
+
+.protocol {
+  font-size: 22px;
+  font-weight: bold;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  margin: 8px 0;
+}
+
+.small {
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+}
+
+ol {
+  margin-left: 20px;
+  color: #333;
+}
+
+ol li {
+  margin: 10px 0;
+}
+
+/* ======= BOTÕES ======= */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #0d3b2e;
+  color: #fff;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #0d3b2e;
+  border: 1px solid #0d3b2e;
+}
+
+/* ======= RODAPÉ ======= */
+footer {
+  background-color: #0d3b2e;
+  color: #fff;
+  padding: 40px 0;
+  margin-top: 50px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+
+footer h4 {
+  margin-bottom: 10px;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer ul li, footer p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}

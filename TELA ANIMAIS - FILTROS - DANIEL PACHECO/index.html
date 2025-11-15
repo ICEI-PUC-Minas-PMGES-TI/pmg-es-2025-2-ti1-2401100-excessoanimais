@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encontre seu novo melhor amigo</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f8f9fa;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      header {
+        background: linear-gradient(135deg, #4a90e2, #63b3ed);
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .logo-container {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-image {
+        height: 40px;
+        width: auto;
+        border-radius: 6px;
+      }
+
+      .logo-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: white;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      header p {
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0.9;
+      }
+
+      main {
+        display: flex;
+        max-width: 1300px;
+        margin: 30px auto;
+        padding: 0 20px;
+        gap: 30px;
+      }
+
+      .filters {
+        flex: 0 0 280px;
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        height: fit-content;
+        position: sticky;
+        top: 20px;
+      }
+
+      .filters h2 {
+        margin-bottom: 20px;
+        color: #2c3e50;
+        font-size: 1.5rem;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #eaeaea;
+      }
+
+      #search {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s;
+      }
+
+      #search:focus {
+        outline: none;
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+      }
+
+      #animal-count {
+        color: #4a90e2;
+        margin-bottom: 15px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: center;
+        background-color: #f0f7ff;
+        padding: 8px;
+        border-radius: 6px;
+      }
+
+      .active-filters {
+        background-color: #e8f5e8;
+        color: #2d5016;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        text-align: center;
+        border-left: 4px solid #4caf50;
+      }
+
+      .no-filters {
+        background-color: #fff3cd;
+        color: #856404;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        text-align: center;
+        border-left: 4px solid #ffc107;
+      }
+
+      .filter-group {
+        margin-bottom: 25px;
+      }
+
+      .filter-group h3 {
+        margin-bottom: 12px;
+        color: #2c3e50;
+        font-size: 1.1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .filter-group h3::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background-color: #eaeaea;
+        margin-left: 8px;
+      }
+
+      .filter-options {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+      }
+
+      .filter-group label {
+        display: block;
+        margin-bottom: 10px;
+        cursor: pointer;
+        padding: 8px 12px;
+        transition: all 0.2s;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+      }
+
+      .filter-group label:hover {
+        background-color: #e3f2fd;
+        transform: translateX(4px);
+      }
+
+      .filter-group input {
+        margin-right: 10px;
+        transform: scale(1.2);
+      }
+
+      .filter-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .filter-buttons button {
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 1rem;
+      }
+
+      #apply-filters {
+        background-color: #4a90e2;
+        color: white;
+        box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+      }
+
+      #apply-filters:hover {
+        background-color: #3a7bc8;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+      }
+
+      #apply-filters:active {
+        transform: translateY(0);
+      }
+
+      #clear-filters {
+        background-color: #6c757d;
+        color: white;
+      }
+
+      #clear-filters:hover {
+        background-color: #5a6268;
+        transform: translateY(-2px);
+      }
+
+      #show-all {
+        background-color: #28a745;
+        color: white;
+      }
+
+      #show-all:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+      }
+
+      .animals {
+        flex: 1;
+      }
+
+      .animals-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+      }
+
+      .animal-card {
+        background-color: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+      }
+
+      .animal-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .animal-image {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        border-bottom: 1px solid #eee;
+        background-color: #f0f7ff;
+      }
+
+      .animal-info {
+        padding: 20px;
+      }
+
+      .animal-info h3 {
+        color: #2c3e50;
+        margin-bottom: 12px;
+        font-size: 1.3rem;
+      }
+
+      .animal-description {
+        color: #666;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .animal-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .animal-detail {
+        background-color: #f0f7ff;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        color: #4a90e2;
+        font-weight: 500;
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+        grid-column: 1 / -1;
+        font-size: 1.1rem;
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        border: 2px dashed #dee2e6;
+      }
+
+      .results-info {
+        text-align: center;
+        padding: 15px;
+        color: #4a90e2;
+        grid-column: 1 / -1;
+        font-size: 1rem;
+        background-color: #f0f7ff;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border-left: 4px solid #4a90e2;
+      }
+
+      footer {
+        text-align: center;
+        padding: 25px;
+        background-color: #2c3e50;
+        color: white;
+        margin-top: 40px;
+      }
+
+      .footer-text {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #63b3ed;
+      }
+
+      @media (max-width: 900px) {
+        main {
+          flex-direction: column;
+        }
+
+        .filters {
+          flex: none;
+          width: 100%;
+          position: static;
+        }
+
+        .animals-grid {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .logo-container {
+          position: static;
+          transform: none;
+          text-align: center;
+          margin-bottom: 15px;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .animals-grid {
+          grid-template-columns: 1fr;
+        }
+
+        header h1 {
+          font-size: 1.8rem;
+        }
+
+        header p {
+          font-size: 1rem;
+        }
+
+        .logo-container {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .filter-buttons {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <img
+          src="https://i.ibb.co/C5NzfJV0/logo-zoopet.png"
+          alt="Zoopet Logo"
+          class="logo-image"
+        />
+        <div class="logo-text">ZOOPET</div>
+      </div>
+      <h1>Encontre seu novo melhor amigo</h1>
+      <p>
+        Todos estes animais foram resgatados, tratados e estão prontos para uma
+        nova família amorosa
+      </p>
+    </header>
+
+    <main>
+      <aside class="filters">
+        <h2>Filtros</h2>
+        <input type="text" id="search" placeholder="Buscar por nome..." />
+        <p id="animal-count">6 animais encontrados</p>
+        <div id="filter-status" class="no-filters">
+          ⓘ Selecione os filtros e clique em "Aplicar Filtros"
+        </div>
+
+        <div class="filter-group">
+          <h3>Espécie</h3>
+          <div class="filter-options">
+            <label><input type="checkbox" value="Cão" /> Cão</label>
+            <label><input type="checkbox" value="Gato" /> Gato</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h3>Sexo</h3>
+          <div class="filter-options">
+            <label><input type="checkbox" value="Fêmea" /> Fêmea</label>
+            <label><input type="checkbox" value="Macho" /> Macho</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h3>Idade</h3>
+          <div class="filter-options">
+            <label><input type="checkbox" value="Filhote" /> Filhote</label>
+            <label><input type="checkbox" value="Jovem" /> Jovem</label>
+            <label><input type="checkbox" value="Adulto" /> Adulto</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h3>Porte</h3>
+          <div class="filter-options">
+            <label><input type="checkbox" value="Pequeno" /> Pequeno</label>
+            <label><input type="checkbox" value="Médio" /> Médio</label>
+            <label><input type="checkbox" value="Grande" /> Grande</label>
+          </div>
+        </div>
+
+        <div class="filter-buttons">
+          <button id="apply-filters">Aplicar Filtros</button>
+          <button id="show-all">Ver Todos</button>
+          <button id="clear-filters">Limpar Seleção</button>
+        </div>
+      </aside>
+
+      <section class="animals">
+        <div class="animals-grid" id="animals-container">
+          <!-- Os animais serão carregados aqui via JavaScript -->
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-text">ZOOPET</div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const animalsContainer = document.getElementById("animals-container");
+        const searchInput = document.getElementById("search");
+        const animalCount = document.getElementById("animal-count");
+        const filterStatus = document.getElementById("filter-status");
+        const filterCheckboxes = document.querySelectorAll(
+          '.filter-group input[type="checkbox"]'
+        );
+        const applyFiltersBtn = document.getElementById("apply-filters");
+        const clearFiltersBtn = document.getElementById("clear-filters");
+        const showAllBtn = document.getElementById("show-all");
+
+        let animals = [
+          {
+            id: 1,
+            nome: "Luna",
+            especie: "Cão",
+            sexo: "Fêmea",
+            idade: "Adulto",
+            porte: "Médio",
+            status: "Vacinado",
+            cor: "Caramelo",
+            descricao:
+              "Luna é uma cadela muito carinhosa e tranquila. Adora brincar e se dá bem com crianças e outros animais.",
+            imagem: "https://placedog.net/600/600?id=1",
+          },
+          {
+            id: 2,
+            nome: "Thor",
+            especie: "Cão",
+            sexo: "Macho",
+            idade: "Jovem",
+            porte: "Grande",
+            status: "Vacinado",
+            cor: "Preto",
+            descricao:
+              "Thor é um cachorro cheio de energia e muito brincalhão. Ideal para famílias ativas que gostam de passeios.",
+            imagem: "https://placedog.net/600/600?id=2",
+          },
+          {
+            id: 3,
+            nome: "Mimi",
+            especie: "Gato",
+            sexo: "Fêmea",
+            idade: "Filhote",
+            porte: "Pequeno",
+            status: "Vacinado",
+            cor: "Cinza",
+            descricao:
+              "Mimi é uma gatinha curiosa e brincalhona. Adora se esconder em caixas e perseguir bolinhas.",
+            imagem: "https://placecats.com/300/200",
+          },
+          {
+            id: 4,
+            nome: "Rex",
+            especie: "Cão",
+            sexo: "Macho",
+            idade: "Adulto",
+            porte: "Grande",
+            status: "Vacinado",
+            cor: "Marrom",
+            descricao:
+              "Rex é um cão muito leal e protetor. Já foi adestrado e sabe vários comandos básicos.",
+            imagem: "https://placedog.net/600/600?id=3",
+          },
+          {
+            id: 5,
+            nome: "Bella",
+            especie: "Gato",
+            sexo: "Fêmea",
+            idade: "Adulto",
+            porte: "Médio",
+            status: "Vacinado",
+            cor: "Branco",
+            descricao:
+              "Bella é uma gata tranquila e independente. Gosta de carinho no seu próprio tempo e é muito limpa.",
+            imagem: "https://placecats.com/millie/300/150",
+          },
+          {
+            id: 6,
+            nome: "Bolt",
+            especie: "Cão",
+            sexo: "Macho",
+            idade: "Filhote",
+            porte: "Pequeno",
+            status: "Vacinado",
+            cor: "Branco",
+            descricao:
+              "Bolt é um filhote muito energético e amoroso. Está aprendendo a fazer suas necessidades no lugar certo.",
+            imagem: "https://placedog.net/600/600?id=4",
+          },
+        ];
+
+        let filteredAnimals = [...animals];
+        let activeFiltersCount = 0;
+
+        renderAnimals();
+        updateFilterStatus();
+
+        function renderAnimals() {
+          animalsContainer.innerHTML = "";
+
+          if (filteredAnimals.length === 0) {
+            animalsContainer.innerHTML = `
+              <div class="no-results">
+                <h3>Nenhum animal encontrado</h3>
+                <p>Tente ajustar os filtros ou buscar por outro nome.</p>
+              </div>
+            `;
+            animalCount.textContent = "0 animais encontrados";
+            return;
+          }
+
+          // Adiciona informação sobre filtros ativos
+          if (activeFiltersCount > 0) {
+            const resultsInfo = document.createElement("div");
+            resultsInfo.className = "results-info";
+            resultsInfo.textContent = `Mostrando ${filteredAnimals.length} animal(is) com os filtros aplicados`;
+            animalsContainer.appendChild(resultsInfo);
+          }
+
+          filteredAnimals.forEach((animal) => {
+            const card = document.createElement("div");
+            card.className = "animal-card";
+
+            const details = [
+              animal.especie,
+              animal.sexo,
+              animal.idade,
+              animal.porte,
+              animal.status,
+              animal.cor,
+            ].filter(Boolean);
+
+            card.innerHTML = `
+              <img src="${animal.imagem}" alt="${
+              animal.nome
+            }" class="animal-image" onerror="this.src='https://via.placeholder.com/600x400/4a90e2/ffffff?text=Imagem+Indisponível'">
+              <div class="animal-info">
+                <h3>${animal.nome}</h3>
+                <p class="animal-description">${animal.descricao}</p>
+                <div class="animal-details">
+                  ${details
+                    .map(
+                      (detail) => `<span class="animal-detail">${detail}</span>`
+                    )
+                    .join("")}
+                </div>
+              </div>
+            `;
+
+            animalsContainer.appendChild(card);
+          });
+
+          animalCount.textContent = `${filteredAnimals.length} animais encontrados`;
+        }
+
+        function updateFilterStatus() {
+          const selectedCount = document.querySelectorAll(
+            '.filter-group input[type="checkbox"]:checked'
+          ).length;
+          const searchTerm = searchInput.value.trim();
+
+          activeFiltersCount = selectedCount + (searchTerm ? 1 : 0);
+
+          if (activeFiltersCount === 0) {
+            filterStatus.className = "no-filters";
+            filterStatus.innerHTML =
+              'Selecione os filtros e clique em "Aplicar Filtros"';
+          } else {
+            filterStatus.className = "active-filters";
+            filterStatus.innerHTML = `${selectedCount} filtro(s) selecionado(s) ${
+              searchTerm ? "+ busca por nome" : ""
+            }`;
+          }
+        }
+
+        function applyFilters() {
+          const searchTerm = searchInput.value.toLowerCase().trim();
+
+          const selectedSpecies = getSelectedCheckboxValues("species-group");
+          const selectedSex = getSelectedCheckboxValues("sex-group");
+          const selectedAge = getSelectedCheckboxValues("age-group");
+          const selectedSize = getSelectedCheckboxValues("size-group");
+
+          // Se nenhum filtro foi selecionado, mostra todos os animais
+          if (
+            selectedSpecies.length === 0 &&
+            selectedSex.length === 0 &&
+            selectedAge.length === 0 &&
+            selectedSize.length === 0 &&
+            searchTerm === ""
+          ) {
+            filteredAnimals = [...animals];
+          } else {
+            filteredAnimals = animals.filter((animal) => {
+              const matchesSearch =
+                searchTerm === "" ||
+                animal.nome.toLowerCase().includes(searchTerm);
+              const matchesSpecies =
+                selectedSpecies.length === 0 ||
+                selectedSpecies.includes(animal.especie);
+              const matchesSex =
+                selectedSex.length === 0 || selectedSex.includes(animal.sexo);
+              const matchesAge =
+                selectedAge.length === 0 || selectedAge.includes(animal.idade);
+              const matchesSize =
+                selectedSize.length === 0 ||
+                selectedSize.includes(animal.porte);
+
+              return (
+                matchesSearch &&
+                matchesSpecies &&
+                matchesSex &&
+                matchesAge &&
+                matchesSize
+              );
+            });
+          }
+
+          updateFilterStatus();
+          renderAnimals();
+        }
+
+        function getSelectedCheckboxValues(groupId) {
+          const group = document.getElementById(groupId);
+          const checkboxes = group.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          return Array.from(checkboxes).map((checkbox) => checkbox.value);
+        }
+
+        function clearFilters() {
+          // Desmarca todas as checkboxes
+          filterCheckboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+          });
+
+          updateFilterStatus();
+        }
+
+        function showAllAnimals() {
+          searchInput.value = "";
+          clearFilters();
+          filteredAnimals = [...animals];
+          renderAnimals();
+        }
+
+        // Event Listeners
+        applyFiltersBtn.addEventListener("click", applyFilters);
+        clearFiltersBtn.addEventListener("click", clearFilters);
+        showAllBtn.addEventListener("click", showAllAnimals);
+
+        // Atualiza status quando checkboxes mudam
+        filterCheckboxes.forEach((checkbox) => {
+          checkbox.addEventListener("change", updateFilterStatus);
+        });
+
+        // A busca ainda funciona em tempo real
+        searchInput.addEventListener("input", function () {
+          updateFilterStatus();
+          applyFilters();
+        });
+      });
+    </script>
+  </body>
+</html>

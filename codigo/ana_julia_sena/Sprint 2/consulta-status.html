@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Status - Zoonoses Parceira</title>
+  <link rel="stylesheet" href="consulta-style.css">
+</head>
+<body>
+
+  <!-- ======= CABEÇALHO ======= -->
+  <header>
+    <div class="container-header">
+      <div class="logo">
+        <img src="icone-coracao.png" alt="Logo">
+        <h1>Zoonoses Parceira</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Como Funciona</a></li>
+          <li><a href="#">Adoção</a></li>
+          <li><button class="btn-login">Login / Cadastrar</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======= CONTEÚDO PRINCIPAL ======= -->
+  <main>
+    <section class="status-section">
+      <h2>Consultar Status da Denúncia</h2>
+      <p class="intro-text">Insira abaixo o número do protocolo recebido para verificar o andamento da sua denúncia.</p>
+
+      <div class="status-box">
+        <label for="inputProtocolo">Número do Protocolo:</label>
+        <input type="text" id="inputProtocolo" placeholder="Ex: W9NRJ5UNE">
+        <button class="btn-primary" onclick="consultarStatus()">Consultar</button>
+      </div>
+
+      <div id="resultado" class="resultado" style="display: none;">
+        <div class="resultado-card">
+          <h3>Status Atual:</h3>
+          <p id="statusTexto"></p>
+          <h4>Última Atualização:</h4>
+          <p id="dataAtualizacao"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======= RODAPÉ ======= -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <h4>Zoonoses Parceira</h4>
+        <p>Conectando cidadãos e o centro de Zoonoses para resgatar, cuidar e encontrar novos lares para animais abandonados.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Links Rápidos</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="denuncia-sucesso.html">Denunciar Animal</a></li>
+          <li><a href="#">Adoção</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contato</h4>
+        <ul>
+          <li>📞 (11) 3456-7890</li>
+          <li>✉ contato@zoonosesparceira.gov.br</li>
+          <li>🏛 Centro de Zoonoses Municipal</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Função de simulação de status da denúncia
+    function consultarStatus() {
+      const protocolo = document.getElementById("inputProtocolo").value.trim().toUpperCase();
+      const resultado = document.getElementById("resultado");
+      const statusTexto = document.getElementById("statusTexto");
+      const dataAtualizacao = document.getElementById("dataAtualizacao");
+
+      if (protocolo === "") {
+        alert("Por favor, insira o número do protocolo.");
+        return;
+      }
+
+      // Simulação de possíveis status
+      const status = [
+        "Em análise pela equipe de triagem.",
+        "Equipe de resgate em deslocamento.",
+        "Aguardando retorno da equipe de campo.",
+        "Resgate concluído, animal em avaliação veterinária.",
+        "Caso encerrado com sucesso."
+      ];
+
+      // Seleciona um status aleatório
+      const statusAleatorio = status[Math.floor(Math.random() * status.length)];
+      const data = new Date();
+      const dataFormatada = data.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+
+      statusTexto.textContent = statusAleatorio;
+      dataAtualizacao.textContent = dataFormatada;
+      resultado.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
