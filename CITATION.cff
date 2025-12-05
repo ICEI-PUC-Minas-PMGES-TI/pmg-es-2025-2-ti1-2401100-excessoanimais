@@ -1,31 +1,34 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: ZooPet
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: de Sena Oliveira
+    given-names: Ana Julia
+  - family-names: Aguiar Pacheco
+    given-names: Daniel
+  - family-names: Marçal de Freitas
+    given-names: Douglas Alexandre
+  - family-names: Oliveira Maia
+    given-names: Pedro Henrique
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Machado Osório Pereira
+    given-names: Daniel
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Soares de Paiva Lacerda
+    given-names: Lucca
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Hanne Soares de Andrade
+    given-names: Michelle
 keywords:
-  - 
-  - 
-repository-code: 
+  - Animais de rua
+  - Zoonoses
+  - Resgate
+  - Adoção
+repository-code: https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-excessoanimais
 license: CC-BY-4.0
 version: 1.0.0
-date-released: 2022-07-14
+
+date-released: 2025-12-14
