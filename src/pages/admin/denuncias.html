@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Denúncias</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../../assets/images/logo.png" alt="Logo">
+                <h3 style="margin-top: 10px;">Admin</h3>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">📊 Dashboard</a></li>
+                    <li class="active"><a href="denuncias.html">📢 Denúncias</a></li>
+                    <li><a href="animais.html">🐾 Animais</a></li>
+                </ul>
+            </nav>
+            <div class="logout"><a href="#" onclick="window.utils.logout()">🚪 Sair</a></div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h2>Gerenciar Denúncias</h2>
+                <select id="filtro-status" class="btn">
+                    <option value="">Todos os Status</option>
+                    <option value="Pendente">Pendente</option>
+                    <option value="Em Andamento">Em Andamento</option>
+                    <option value="Concluído">Concluído</option>
+                </select>
+            </header>
+
+            <div class="table-container">
+                <table id="tabela-denuncias">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Local</th>
+                            <th>Animal</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div id="modal-denuncia" class="modal">
+        <div class="modal-content">
+            <h3>Detalhes da Denúncia</h3>
+            <div id="conteudo-modal" style="margin: 20px 0; line-height: 1.8;">
+            </div>
+            
+            <hr>
+            
+            <form id="form-status" style="margin-top: 20px;">
+                <label for="novo-status" style="font-weight: bold;">Atualizar Status:</label>
+                <select id="novo-status" class="btn" style="width: 100%; border: 1px solid #ddd; margin-top: 10px;">
+                    <option value="Pendente">Pendente</option>
+                    <option value="Em Andamento">Em Andamento</option>
+                    <option value="Concluído">Concluído</option>
+                </select>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn" onclick="document.getElementById('modal-denuncia').style.display='none'">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../js/api.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script>
+        let denunciaAtualId = null;
+        let todasDenuncias = [];
+
+        document.addEventListener('DOMContentLoaded', carregarDenuncias);
+        document.getElementById('filtro-status').addEventListener('change', renderizarTabela);
+
+        async function carregarDenuncias() {
+            todasDenuncias = await window.api.get('/denuncias');
+            renderizarTabela();
+        }
+
+        function renderizarTabela() {
+            const filtro = document.getElementById('filtro-status').value;
+            const tbody = document.querySelector('#tabela-denuncias tbody');
+            
+            const filtradas = filtro 
+                ? todasDenuncias.filter(d => d.status === filtro)
+                : todasDenuncias;
+
+            tbody.innerHTML = filtradas.map(d => `
+                <tr>
+                    <td>#${d.id}</td>
+                    <td>${d.endereco}</td>
+                    <td>${d.tipo} (${d.condicao})</td>
+                    <td><span class="badge badge-${(d.status || 'Pendente').toLowerCase().replace(' ', '')}">${d.status || 'Pendente'}</span></td>
+                    <td>
+                        <button class="btn btn-primary" onclick="abrirModal(${d.id})">Gerenciar</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        window.abrirModal = (id) => {
+            const denuncia = todasDenuncias.find(d => d.id === id);
+            if(!denuncia) return;
+
+            denunciaAtualId = id;
+            
+            document.getElementById('conteudo-modal').innerHTML = `
+                <p><strong>Endereço:</strong> ${denuncia.endereco}</p>
+                <p><strong>Referência:</strong> ${denuncia.referencia || '-'}</p>
+                <p><strong>Observações:</strong> ${denuncia.observacoes || '-'}</p>
+                <p><strong>Denunciante:</strong> ${denuncia.nome} (${denuncia.telefone})</p>
+                <p><strong>Data:</strong> ${denuncia.dataEnvio}</p>
+            `;
+            
+            document.getElementById('novo-status').value = denuncia.status || 'Pendente';
+            document.getElementById('modal-denuncia').style.display = 'flex';
+        };
+
+        document.getElementById('form-status').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const novoStatus = document.getElementById('novo-status').value;
+            
+            try {
+                await window.api.update(`/denuncias/${denunciaAtualId}`, { status: novoStatus });
+                
+                const dIndex = todasDenuncias.findIndex(d => d.id === denunciaAtualId);
+                if(dIndex >= 0) todasDenuncias[dIndex].status = novoStatus;
+                
+                renderizarTabela();
+                document.getElementById('modal-denuncia').style.display = 'none';
+                alert('Status atualizado com sucesso!');
+            } catch (error) {
+                alert('Erro ao atualizar status.');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - ZooPet</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body data-page="dashboard">
+    <div class="admin-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="../../assets/images/logo.png" alt="Logo">
+                <h3 style="margin-top: 10px;">Admin</h3>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="dashboard.html">📊 Dashboard</a></li>
+                    <li><a href="denuncias.html">📢 Denúncias</a></li>
+                    <li><a href="animais.html">🐾 Animais</a></li>
+                </ul>
+            </nav>
+            <div class="logout">
+                <a href="#" onclick="window.utils.logout()">🚪 Sair</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <button id="menu-toggle" class="btn" style="display: none;">☰</button>
+                <h2>Visão Geral</h2>
+                <div class="user-info">
+                    <span>👋 Olá, Admin</span>
+                </div>
+            </header>
+            <section class="cards">
+                <div class="card blue">
+                    <p>Total de Denúncias</p>
+                    <h2 id="total-denuncias">--</h2>
+                </div>
+                <div class="card orange">
+                    <p>Animais para Adoção</p>
+                    <h2 id="animais-adocao">--</h2>
+                </div>
+                <div class="card green">
+                    <p>Adoções Realizadas</p>
+                    <h2 id="adocoes-concluidas">--</h2>
+                </div>
+            </section>
+            <section>
+                <h3 style="margin-bottom: 20px;">Últimas Denúncias Recebidas</h3>
+                <div class="table-container">
+                    <table id="tabela-denuncias">
+                        <thead>
+                            <tr>
+                                <th>Protocolo</th>
+                                <th>Tipo</th>
+                                <th>Condição</th>
+                                <th>Status</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../../js/api.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const [denuncias, animais, adocoes] = await Promise.all([
+                    window.api.get('/denuncias'),
+                    window.api.get('/animais'),
+                    window.api.get('/adocoes')
+                ]);
+
+                document.getElementById('total-denuncias').textContent = denuncias.length;
+                
+                const animaisDisponiveis = animais.filter(a => a.status !== 'Adotado');
+                document.getElementById('animais-adocao').textContent = animaisDisponiveis.length;
+                
+                document.getElementById('adocoes-concluidas').textContent = adocoes ? adocoes.length : 0;
+
+                const tbody = document.querySelector('#tabela-denuncias tbody');
+                const ultimas = denuncias.sort((a,b) => b.id - a.id).slice(0, 5);
+
+                if(ultimas.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center">Nenhuma denúncia encontrada.</td></tr>';
+                } else {
+                    tbody.innerHTML = ultimas.map(d => {
+                        let badgeClass = 'badge-pendente';
+                        if(d.status === 'Em Andamento') badgeClass = 'badge-andamento';
+                        if(d.status === 'Concluído') badgeClass = 'badge-concluido';
+
+                        return `
+                            <tr>
+                                <td>#${d.id}</td>
+                                <td>${d.tipo}</td>
+                                <td>${d.condicao}</td>
+                                <td><span class="badge ${badgeClass}">${d.status || 'Pendente'}</span></td>
+                                <td>${d.dataEnvio || '-'}</td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+
+            } catch (error) {
+                console.error("Erro dashboard:", error);
+            }
+        });
+    </script>
+</body>
+</html>

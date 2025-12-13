@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Animais</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../../assets/images/logo.png" alt="Logo">
+                <h3 style="margin-top: 10px;">Admin</h3>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">📊 Dashboard</a></li>
+                    <li><a href="denuncias.html">📢 Denúncias</a></li>
+                    <li class="active"><a href="animais.html">🐾 Animais</a></li>
+                </ul>
+            </nav>
+            <div class="logout"><a href="#" onclick="window.utils.logout()">🚪 Sair</a></div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h2>Gerenciar Animais</h2>
+                <button class="btn btn-primary" onclick="abrirModal()">+ Novo Animal</button>
+            </header>
+
+            <div class="table-container">
+                <table id="tabela-animais">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nome</th>
+                            <th>Espécie</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div id="modal-animal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-titulo">Adicionar Animal</h3>
+            <form id="form-animal">
+                <input type="hidden" id="animal-id">
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label>Nome</label>
+                        <input type="text" id="nome" class="btn" style="width:100%; border:1px solid #ddd; text-align:left;" required>
+                    </div>
+                    <div>
+                        <label>Espécie</label>
+                        <select id="especie" class="btn" style="width:100%; border:1px solid #ddd;">
+                            <option value="Cão">Cão</option>
+                            <option value="Gato">Gato</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <label>URL da Foto</label>
+                    <input type="text" id="imagem" class="btn" style="width:100%; border:1px solid #ddd; text-align:left;" placeholder="http://...">
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <label>Descrição</label>
+                    <textarea id="descricao" class="btn" style="width:100%; border:1px solid #ddd; text-align:left;" rows="3"></textarea>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                    <div>
+                        <label>Status</label>
+                        <select id="status" class="btn" style="width:100%; border:1px solid #ddd;">
+                            <option value="Disponivel">Disponível</option>
+                            <option value="Adotado">Adotado</option>
+                            <option value="Em Tratamento">Em Tratamento</option>
+                        </select>
+                    </div>
+                     <div>
+                        <label>Sexo</label>
+                        <select id="sexo" class="btn" style="width:100%; border:1px solid #ddd;">
+                            <option value="Macho">Macho</option>
+                            <option value="Fêmea">Fêmea</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn" onclick="document.getElementById('modal-animal').style.display='none'">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../js/api.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script>
+        let todosAnimais = [];
+
+        document.addEventListener('DOMContentLoaded', carregarAnimais);
+
+        async function carregarAnimais() {
+            todosAnimais = await window.api.get('/animais');
+            renderizar();
+        }
+
+        function renderizar() {
+            const tbody = document.querySelector('#tabela-animais tbody');
+            tbody.innerHTML = todosAnimais.map(a => `
+                <tr>
+                    <td><img src="${a.imagem || '../../assets/images/placeholder.png'}" style="width:50px; height:50px; border-radius:4px; object-fit:cover;"></td>
+                    <td><strong>${a.nome}</strong></td>
+                    <td>${a.especie}</td>
+                    <td>${a.status}</td>
+                    <td>
+                        <button class="btn" onclick="abrirModal(${a.id})" style="border:1px solid #ddd;">✏️ Editar</button>
+                        <button class="btn" onclick="excluirAnimal(${a.id})" style="color:red; border:1px solid #ddd;">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        window.abrirModal = (id = null) => {
+            const form = document.getElementById('form-animal');
+            form.reset();
+            document.getElementById('animal-id').value = '';
+            document.getElementById('modal-titulo').textContent = 'Adicionar Animal';
+
+            if(id) {
+                const animal = todosAnimais.find(a => a.id === id);
+                document.getElementById('animal-id').value = animal.id;
+                document.getElementById('nome').value = animal.nome;
+                document.getElementById('especie').value = animal.especie;
+                document.getElementById('imagem').value = animal.imagem;
+                document.getElementById('descricao').value = animal.descricao;
+                document.getElementById('status').value = animal.status;
+                document.getElementById('sexo').value = animal.sexo;
+                document.getElementById('modal-titulo').textContent = 'Editar Animal';
+            }
+            document.getElementById('modal-animal').style.display = 'flex';
+        }
+
+        document.getElementById('form-animal').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('animal-id').value;
+            
+            const payload = {
+                nome: document.getElementById('nome').value,
+                especie: document.getElementById('especie').value,
+                imagem: document.getElementById('imagem').value,
+                descricao: document.getElementById('descricao').value,
+                status: document.getElementById('status').value,
+                sexo: document.getElementById('sexo').value,
+                idade: "Adulto", 
+                porte: "Médio"
+            };
+
+            try {
+                if(id) {
+                    await window.api.update(`/animais/${id}`, payload);
+                } else {
+                    await window.api.post('/animais', payload);
+                }
+                carregarAnimais();
+                document.getElementById('modal-animal').style.display = 'none';
+            } catch (error) {
+                console.error(error);
+                alert('Erro ao salvar.');
+            }
+        });
+
+        window.excluirAnimal = async (id) => {
+            if(confirm('Tem certeza?')) {
+                await window.api.delete(`/animais/${id}`);
+                carregarAnimais();
+            }
+        }
+    </script>
+</body>
+</html>

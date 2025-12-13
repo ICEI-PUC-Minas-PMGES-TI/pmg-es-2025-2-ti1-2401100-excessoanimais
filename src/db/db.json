@@ -21,6 +21,14 @@
       "animaisAdotados": [],
       "animaisCurtidos": [],
       "denunciasFeitas": []
+    },
+    {
+      "tipoUsuario": "admin",
+      "nome": "Administrador Zoonoses",
+      "email": "admin@zoonoses.com",
+      "senha": "admin",
+      "telefone": "000000000",
+      "id": "ab3c"
     }
   ],
   "denuncias": [
