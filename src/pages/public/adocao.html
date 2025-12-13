@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZooPet - Adoção</title>
+    
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/adocao.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <div style="background: var(--primary-color); color: white; text-align: center; padding: 40px 20px;">
+        <h1 style="margin: 0;">Encontre seu novo melhor amigo</h1>
+        <p style="opacity: 0.8; margin-top: 10px;">Animais resgatados prontos para uma nova família</p>
+    </div>
+
+    <main>
+        <aside class="filters">
+            <h2>Filtros</h2>
+            <input type="text" id="search" placeholder="Buscar por nome...">
+            <p id="animal-count">Carregando...</p>
+
+            <div class="filter-group">
+                <h3>Espécie</h3>
+                <div class="filter-options">
+                    <label><input type="checkbox" name="especie" value="Cão"> Cão</label>
+                    <label><input type="checkbox" name="especie" value="Gato"> Gato</label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>Sexo</h3>
+                <div class="filter-options">
+                    <label><input type="checkbox" name="sexo" value="Fêmea"> Fêmea</label>
+                    <label><input type="checkbox" name="sexo" value="Macho"> Macho</label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>Porte</h3>
+                <div class="filter-options">
+                    <label><input type="checkbox" name="porte" value="Pequeno"> Pequeno</label>
+                    <label><input type="checkbox" name="porte" value="Médio"> Médio</label>
+                    <label><input type="checkbox" name="porte" value="Grande"> Grande</label>
+                </div>
+            </div>
+
+            <div class="filter-buttons">
+                <button id="apply-filters" class="btn btn-secondary">Aplicar Filtros</button>
+                <button id="clear-filters" class="btn" style="background: #ddd;">Limpar Filtros</button>
+            </div>
+        </aside>
+        <section class="animals">
+            <div class="animals-grid" id="animals-container">
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../../js/api.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/adocao.js"></script>
+</body>
+</html>
