@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZooPet — Login</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/auth.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a class="voltar" href="../../../index.html">← Voltar ao início</a>
+
+  <div class="fundo-escuro">
+    <img src="../../assets/images/backgroundLoginImg.png" alt="Imagem de fundo" class="imagem-fundo">
+  </div>
+
+  <div class="centro">
+    <div class="caixa-login">
+      <div class="logo">
+        <img src="../../assets/images/logo.png" alt="Logo ZooPet">
+        <h1>ZooPet</h1>
+      </div>
+
+      <h2>Acesse sua conta</h2>
+
+      <form id="form-login">
+        <label for="email">E-mail</label>
+        <div class="campo">
+          <input id="email" type="email" placeholder="seu@email.com" required>
+        </div>
+
+        <label for="senha">Senha</label>
+        <div class="campo">
+          <input id="senha" type="password" placeholder="••••••••" required>
+        </div>
+
+        <div class="botao-centro">
+          <button class="botao" type="submit">Entrar</button>
+        </div>
+
+        <div class="links">
+          <p>Não tem uma conta? <a href="./cadastro.html">Cadastre-se</a></p>
+        </div>
+      </form>
+
+      <p id="mensagem" class="mensagem"></p>
+    </div>
+  </div>
+
+  <script src="../../js/api.js"></script>
+  <script>
+    const form = document.getElementById('form-login');
+    const msg = document.getElementById('mensagem');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        msg.textContent = 'Carregando...';
+        msg.className = 'mensagem';
+
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+
+        try {
+            const usuarios = await window.api.get('/usuarios');
+            
+            const usuarioEncontrado = usuarios.find(u => u.email === email && u.senha === senha);
+
+            if (usuarioEncontrado) {
+                msg.textContent = 'Login realizado com sucesso!';
+                msg.className = 'mensagem sucesso';
+                
+                localStorage.setItem('usuarioLogado', JSON.stringify(usuarioEncontrado));
+                
+                setTimeout(() => {
+                    if(usuarioEncontrado.tipoUsuario === 'zoonoses' || usuarioEncontrado.tipoUsuario === 'admin') {
+                       window.location.href = '../admin/dashboard.html';
+                    } else {
+                       window.location.href = '../../../index.html';
+                    }
+                }, 1000);
+            } else {
+                msg.textContent = 'E-mail ou senha incorretos.';
+                msg.className = 'mensagem erro';
+            }
+        } catch (error) {
+            console.error(error);
+            msg.textContent = 'Erro ao conectar com o servidor.';
+            msg.className = 'mensagem erro';
+        }
+    });
+  </script>
+</body>
+</html>
