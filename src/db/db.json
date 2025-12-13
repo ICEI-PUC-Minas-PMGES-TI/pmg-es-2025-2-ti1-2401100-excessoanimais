@@ -1,7 +1,7 @@
 {
   "usuarios": [
     {
-      "id": "de69",
+      "id": "54ae",
       "tipoUsuario": "comum",
       "nome": "Douglas Freitas",
       "email": "douglasamf14@gmail.com",
@@ -10,11 +10,22 @@
       "animaisAdotados": [],
       "animaisCurtidos": [],
       "denunciasFeitas": []
+    },
+    {
+      "id": "be2b",
+      "tipoUsuario": "comum",
+      "nome": "Bernardo Vinhal",
+      "email": "nicobnadal13@gmail.com",
+      "senha": "14Douglas$$",
+      "telefone": "31971959204",
+      "animaisAdotados": [],
+      "animaisCurtidos": [],
+      "denunciasFeitas": []
     }
   ],
   "denuncias": [
     {
-      "id": 1,
+      "id": "1",
       "endereco": "Rua Justino Carneiro,63,Inconfidencia",
       "referencia": "Av. Abilio MAchado",
       "tipo": "Cachorro",
@@ -47,7 +58,7 @@
   ],
   "animais": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Luna",
       "especie": "Cão",
       "sexo": "Fêmea",
@@ -59,7 +70,7 @@
       "imagem": "https://placedog.net/600/600?id=1"
     },
     {
-      "id": 2,
+      "id": "2",
       "nome": "Thor",
       "especie": "Cão",
       "sexo": "Macho",
@@ -71,7 +82,7 @@
       "imagem": "https://placedog.net/600/600?id=2"
     },
     {
-      "id": 3,
+      "id": "3",
       "nome": "Mimi",
       "especie": "Gato",
       "sexo": "Fêmea",
@@ -83,7 +94,7 @@
       "imagem": "https://placedog.net/600/600?id=10"
     },
     {
-      "id": 4,
+      "id": "4",
       "nome": "Rex",
       "especie": "Cão",
       "sexo": "Macho",
@@ -95,7 +106,7 @@
       "imagem": "https://placedog.net/600/600?id=3"
     },
     {
-      "id": 5,
+      "id": "5",
       "nome": "Bella",
       "especie": "Gato",
       "sexo": "Fêmea",
@@ -107,7 +118,7 @@
       "imagem": "https://placedog.net/600/600?id=11"
     },
     {
-      "id": 6,
+      "id": "6",
       "nome": "Bolt",
       "especie": "Cão",
       "sexo": "Macho",
@@ -121,13 +132,13 @@
   ],
   "adocoes": [
     {
-      "id": 1,
+      "id": "1",
       "animal_id": 2,
       "data": "2025-10-15",
       "adotante": "Maria Silva"
     },
     {
-      "id": 2,
+      "id": "2",
       "animal_id": 4,
       "data": "2025-11-02",
       "adotante": "João Pereira"
@@ -135,13 +146,13 @@
   ],
   "resgates": [
     {
-      "id": 1,
+      "id": "1",
       "animal": "Bolt",
       "data": "2025-11-01",
       "status": "Concluído"
     },
     {
-      "id": 2,
+      "id": "2",
       "animal": "Lua",
       "data": "2025-11-06",
       "status": "Em Andamento"

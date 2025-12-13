@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZooPet - Resgate e Adoção</title>
+    <link rel="stylesheet" href="./src/css/global.css">
+    <link rel="stylesheet" href="./src/css/home.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Ajude um Amigo de Rua</h1>
+                <p>Juntos podemos transformar a vida de animais abandonados. Denuncie situações de risco ou encontre seu novo melhor amigo.</p>
+                <div class="hero-buttons">
+                    <a href="./src/pages/public/denunciar.html" class="btn btn-secondary">Denunciar Animal</a>
+                    <a href="./src/pages/public/adocao.html" class="btn btn-primary" style="background-color: white; color: var(--primary-color);">Quero Adotar</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <div class="container">
+                <h2 style="margin-bottom: 10px;">Como Funciona</h2>
+                <p style="color: #666;">Entenda como nossa parceria com a Zoonoses salva vidas</p>
+                
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Denúncia</h3>
+                        <p>Você avista um animal em risco e faz a denúncia pelo site.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Resgate</h3>
+                        <p>A Zoonoses recebe o alerta e envia uma equipe para o local.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Cuidados</h3>
+                        <p>O animal é tratado, vacinado e castrado pelos veterinários.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Adoção</h3>
+                        <p>Recuperado, ele aparece aqui no site esperando um novo lar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="featured-animals">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: end;">
+                    <h2>Esperando por um Lar 🐾</h2>
+                    <a href="./src/pages/public/adocao.html" style="color: var(--primary-color); font-weight: bold;">Ver todos &rarr;</a>
+                </div>
+                <div id="animais-container" class="animals-grid">
+                    <p class="text-center">Carregando animais...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="footer-placeholder"></div>
+
+    <script src="./src/js/api.js"></script>
+    <script src="./src/js/utils.js"></script>
+    <script src="./src/js/home.js"></script>
+</body>
+</html>
