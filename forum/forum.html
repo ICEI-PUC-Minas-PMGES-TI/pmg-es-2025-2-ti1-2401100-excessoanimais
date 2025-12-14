@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comunidade ZooPet</title>
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../../css/global.css" />
+    <!-- CSS Específico -->
+    <link rel="stylesheet" href="../../css/comunidade.css" />
+
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body>
+    <!-- Header Global -->
+    <div id="header-placeholder"></div>
+
+    <main class="container comunidade-wrapper">
+      <div class="comunidade-header">
+        <h1>🤝 Hub Comunitário ZooPet</h1>
+        <p>Mapeamento colaborativo e rede de apoio para animais de rua.</p>
+      </div>
+
+      <!-- Navegação por Abas -->
+      <div class="nav-tabs">
+        <button class="tab-btn active" data-target="view-instituicoes">
+          🏥 Instituições
+        </button>
+        <button class="tab-btn" data-target="view-animais">
+          🐾 Animais de Rua
+        </button>
+        <button class="tab-btn" data-target="view-cadastro">
+          ➕ Cadastrar Animal
+        </button>
+        <button class="tab-btn" data-target="view-forum">💬 Fórum</button>
+      </div>
+
+      <!-- VIEW 1: Instituições -->
+      <div id="view-instituicoes" class="tab-content active">
+        <div class="filters-bar">
+          <input
+            type="text"
+            id="search-inst"
+            class="search-input"
+            placeholder="🔍 Buscar instituição..."
+          />
+          <div class="stat-badge">Total: <span id="total-inst">0</span></div>
+        </div>
+
+        <div class="map-layout">
+          <div id="map-inst" class="map-container"></div>
+          <div class="sidebar-list" id="list-inst">
+            <p class="loading-text">Carregando mapa...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 2: Animais de Rua -->
+      <div id="view-animais" class="tab-content">
+        <div class="filters-bar">
+          <select id="filter-especie" class="filter-select">
+            <option value="">Todas as Espécies</option>
+            <option value="Cão">Cão</option>
+            <option value="Gato">Gato</option>
+          </select>
+          <div class="stat-badge warning">
+            Animais Mapeados: <span id="total-animais">0</span>
+          </div>
+        </div>
+
+        <div class="map-layout">
+          <div id="map-animais" class="map-container"></div>
+          <div class="sidebar-list" id="list-animais">
+            <p class="loading-text">Carregando registros...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 3: Cadastro -->
+      <div id="view-cadastro" class="tab-content">
+        <div class="form-card">
+          <h2>📝 Mapear Animal de Rua</h2>
+          <p>
+            Ajude a Zoonoses a identificar onde estão os animais que precisam de
+            ajuda.
+          </p>
+
+          <form id="form-animal">
+            <input type="hidden" id="animal-id" />
+            <!-- Para edição futura -->
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Espécie *</label>
+                <select id="cad-especie" required>
+                  <option value="Cão">Cão</option>
+                  <option value="Gato">Gato</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Porte</label>
+                <select id="cad-porte">
+                  <option value="Pequeno">Pequeno</option>
+                  <option value="Médio">Médio</option>
+                  <option value="Grande">Grande</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Quantidade Estimada</label>
+                <input type="number" id="cad-qtd" min="1" value="1" />
+              </div>
+              <div class="form-group">
+                <label>Cor / Características</label>
+                <input
+                  type="text"
+                  id="cad-cor"
+                  placeholder="Ex: Preto, manchado..."
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Localização (Bairro/Referência) *</label>
+              <input
+                type="text"
+                id="cad-local"
+                required
+                placeholder="Ex: Praça Central, Bairro Jardim"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Observações</label>
+              <textarea id="cad-obs" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary full-width">
+              📍 Salvar Registro no Mapa
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- VIEW 4: Fórum -->
+      <div id="view-forum" class="tab-content">
+        <div class="forum-layout">
+          <div class="forum-sidebar">
+            <button id="btn-new-topic" class="btn btn-primary full-width">
+              ➕ Novo Tópico
+            </button>
+            <div class="forum-stats">
+              <p>Tópicos: <span id="stats-topics">0</span></p>
+            </div>
+          </div>
+
+          <div class="forum-feed" id="forum-feed">
+            <p class="loading-text">Carregando discussões...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal de Tópico (Fórum) -->
+    <div id="modal-topic" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3 id="modal-topic-title"></h3>
+        <div id="modal-topic-body" class="topic-body"></div>
+        <div id="modal-topic-replies" class="topic-replies"></div>
+
+        <form id="form-reply" class="reply-form">
+          <input
+            type="text"
+            id="reply-author"
+            placeholder="Seu nome"
+            required
+          />
+          <input
+            type="text"
+            id="reply-msg"
+            placeholder="Escreva uma resposta..."
+            required
+          />
+          <button type="submit" class="btn btn-secondary">Enviar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal Novo Tópico -->
+    <div id="modal-new-topic" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Criar Tópico</h3>
+        <form id="form-new-topic">
+          <label>Título</label>
+          <input type="text" id="new-topic-title" required />
+
+          <label>Tipo</label>
+          <select id="new-topic-type">
+            <option value="avistamento">🔍 Avistamento</option>
+            <option value="ajuda">🆘 Pedido de Ajuda</option>
+            <option value="dica">💡 Dica</option>
+          </select>
+
+          <label>Mensagem</label>
+          <textarea id="new-topic-msg" rows="4" required></textarea>
+
+          <label>Seu Nome</label>
+          <input type="text" id="new-topic-author" required />
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="margin-top: 10px"
+          >
+            Publicar
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer Global -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="../../js/api.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/comunidade.js"></script>
+  </body>
+</html>

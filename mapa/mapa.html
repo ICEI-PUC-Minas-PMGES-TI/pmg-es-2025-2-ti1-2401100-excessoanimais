@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa de Zoonoses - ZooPet</title>
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../../css/global.css" />
+    <!-- CSS Específico desta página -->
+    <link rel="stylesheet" href="../../css/mapa.css" />
+
+    <!-- Leaflet CSS (Biblioteca de Mapa) -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body>
+    <!-- Header Global (Injetado via JS) -->
+    <div id="header-placeholder"></div>
+
+    <main class="container map-wrapper">
+      <div class="map-header">
+        <h1>🗺️ Rede de Apoio Zoonoses</h1>
+        <p>Encontre a unidade de controle ou parceiro mais próximo de você.</p>
+      </div>
+
+      <!-- Estatísticas Rápidas -->
+      <div class="stats-bar">
+        <div class="stat-box">
+          <div class="stat-number" id="total-inst">0</div>
+          <div class="stat-label">Locais Encontrados</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number" id="active-area">Todas</div>
+          <div class="stat-label">Área Filtrada</div>
+        </div>
+      </div>
+
+      <!-- Controles e Filtros -->
+      <div class="map-controls">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="🔍 Buscar por nome do órgão..."
+        />
+
+        <select id="area-filter" class="filter-select">
+          <option value="">Todas as Áreas</option>
+          <!-- Opções preenchidas via JS -->
+        </select>
+
+        <button id="btn-reset" class="btn btn-secondary">Limpar Filtros</button>
+      </div>
+
+      <!-- Conteúdo Principal (Mapa + Lista) -->
+      <div class="map-content">
+        <div id="map-container"></div>
+
+        <div class="sidebar-list">
+          <div id="institutions-list">
+            <p style="padding: 20px; text-align: center; color: #666">
+              Carregando mapa...
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Global (Injetado via JS) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <!-- Leaflet JS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <!-- Scripts do Projeto -->
+    <script src="../../js/api.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/mapa.js"></script>
+  </body>
+</html>
