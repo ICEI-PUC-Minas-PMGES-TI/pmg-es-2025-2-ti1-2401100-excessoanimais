@@ -29,6 +29,17 @@
       "senha": "admin",
       "telefone": "000000000",
       "id": "ab3c"
+    },
+    {
+      "id": "837a",
+      "tipoUsuario": "comum",
+      "nome": "Daniel Aguiar Pacheco",
+      "email": "danielaguiarpacheco@gmail.com",
+      "senha": "gueros12",
+      "telefone": "31997245373",
+      "animaisAdotados": [],
+      "animaisCurtidos": [],
+      "denunciasFeitas": []
     }
   ],
   "denuncias": [
@@ -44,6 +55,20 @@
       "telefone": "31987013977",
       "email": "phpspinho@gmail.com",
       "dataEnvio": "26/10/2025, 21:55:57"
+    },
+    {
+      "id": "2094",
+      "endereco": "Rua Raimunda Simoes da Silva, 141",
+      "referencia": "Em frente ao prédio vermelho ",
+      "tipo": "Gato",
+      "porte": "Médio",
+      "condicao": "Saudavel",
+      "observacoes": "Gato muito dócil.",
+      "nome": "Daniel Aguiar Pacheco",
+      "telefone": "31997245373",
+      "email": "danielaguiarpacheco@gmail.com",
+      "status": "Pendente",
+      "dataEnvio": "14/12/2025, 20:41:49"
     }
   ],
   "instituicoes": [
@@ -136,6 +161,17 @@
       "cor": "Branco",
       "descricao": "Bolt é um filhote muito energético e amoroso. Está aprendendo a fazer suas necessidades no lugar certo.",
       "imagem": "https://placedog.net/600/600?id=4"
+    },
+    {
+      "id": "df56",
+      "nome": "Astrid",
+      "especie": "Gato",
+      "imagem": "https://placecats.com/bella/300/200",
+      "descricao": "Calma, dócil e muito preguiçosa.",
+      "status": "Disponivel",
+      "sexo": "Fêmea",
+      "idade": "Adulto",
+      "porte": "Médio"
     }
   ],
   "adocoes": [
