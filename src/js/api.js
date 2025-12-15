@@ -29,7 +29,7 @@ const api = {
     update: async (endpoint, data) => {
         try {
             const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-                method: "PUT",
+                method: "PATCH", // <--- Mudei de PUT para PATCH aqui!
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             });

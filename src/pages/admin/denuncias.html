@@ -98,31 +98,53 @@
                 ? todasDenuncias.filter(d => d.status === filtro)
                 : todasDenuncias;
 
-            tbody.innerHTML = filtradas.map(d => `
+            if (filtradas.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Nenhuma denúncia encontrada.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtradas.map(d => {
+                // Tratamento de segurança para status null/undefined
+                const status = d.status || 'Pendente';
+                const badgeClass = status.toLowerCase().replace(' ', ''); // pendente, emandamento, concluido
+
+                return `
                 <tr>
                     <td>#${d.id}</td>
                     <td>${d.endereco}</td>
-                    <td>${d.tipo} (${d.condicao})</td>
-                    <td><span class="badge badge-${(d.status || 'Pendente').toLowerCase().replace(' ', '')}">${d.status || 'Pendente'}</span></td>
+                    <td>${d.tipo} <br><small style="color:#666">(${d.condicao})</small></td>
+                    <td><span class="badge badge-${badgeClass}">${status}</span></td>
                     <td>
-                        <button class="btn btn-primary" onclick="abrirModal(${d.id})">Gerenciar</button>
+                        <!-- CORREÇÃO CRÍTICA: Aspas simples '${d.id}' em volta do ID -->
+                        <button class="btn btn-primary" onclick="abrirModal('${d.id}')">Gerenciar</button>
                     </td>
                 </tr>
-            `).join('');
+            `}).join('');
         }
 
         window.abrirModal = (id) => {
-            const denuncia = todasDenuncias.find(d => d.id === id);
-            if(!denuncia) return;
+            console.log("CLIQUE DETECTADO! Tentando abrir ID:", id); // Isso vai aparecer no console agora
 
-            denunciaAtualId = id;
+            // Força ambos para String para garantir que "1" seja igual a 1
+            const denuncia = todasDenuncias.find(d => String(d.id) === String(id));
             
+            if(!denuncia) {
+                console.error("ERRO: Denúncia não encontrada no array local. ID procurado:", id);
+                console.log("IDs disponíveis:", todasDenuncias.map(d => d.id));
+                return;
+            }
+
+            denunciaAtualId = denuncia.id;
+            
+            // Preenche modal com tratamento para campos vazios
             document.getElementById('conteudo-modal').innerHTML = `
-                <p><strong>Endereço:</strong> ${denuncia.endereco}</p>
-                <p><strong>Referência:</strong> ${denuncia.referencia || '-'}</p>
-                <p><strong>Observações:</strong> ${denuncia.observacoes || '-'}</p>
-                <p><strong>Denunciante:</strong> ${denuncia.nome} (${denuncia.telefone})</p>
-                <p><strong>Data:</strong> ${denuncia.dataEnvio}</p>
+                <p><strong>📍 Endereço:</strong> ${denuncia.endereco}</p>
+                <p><strong>🏢 Referência:</strong> ${denuncia.referencia || 'Não informada'}</p>
+                <p><strong>📝 Observações:</strong> ${denuncia.observacoes || 'Nenhuma'}</p>
+                <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
+                <p><strong>👤 Denunciante:</strong> ${denuncia.nome}</p>
+                <p><strong>📞 Telefone:</strong> ${denuncia.telefone}</p>
+                <p><strong>📅 Data:</strong> ${denuncia.dataEnvio || 'Data não registrada'}</p>
             `;
             
             document.getElementById('novo-status').value = denuncia.status || 'Pendente';

@@ -124,8 +124,8 @@
                     <td>${a.especie}</td>
                     <td>${a.status}</td>
                     <td>
-                        <button class="btn" onclick="abrirModal(${a.id})" style="border:1px solid #ddd;">✏️ Editar</button>
-                        <button class="btn" onclick="excluirAnimal(${a.id})" style="color:red; border:1px solid #ddd;">🗑️</button>
+                        <button class="btn" onclick="abrirModal('${a.id}')" style="border:1px solid #ddd;">✏️ Editar</button>
+                        <button class="btn" onclick="excluirAnimal('${a.id}')" style="color:red; border:1px solid #ddd;">🗑️</button>
                     </td>
                 </tr>
             `).join('');
@@ -138,14 +138,20 @@
             document.getElementById('modal-titulo').textContent = 'Adicionar Animal';
 
             if(id) {
-                const animal = todosAnimais.find(a => a.id === id);
+                const animal = todosAnimais.find(a => String(a.id) === String(id));
+                
+                if (!animal) {
+                    console.error("Animal não encontrado para o ID:", id);
+                    return;
+                }
+
                 document.getElementById('animal-id').value = animal.id;
                 document.getElementById('nome').value = animal.nome;
                 document.getElementById('especie').value = animal.especie;
                 document.getElementById('imagem').value = animal.imagem;
                 document.getElementById('descricao').value = animal.descricao;
                 document.getElementById('status').value = animal.status;
-                document.getElementById('sexo').value = animal.sexo;
+                document.getElementById('sexo').value = animal.sexo; // Se tiver esse campo
                 document.getElementById('modal-titulo').textContent = 'Editar Animal';
             }
             document.getElementById('modal-animal').style.display = 'flex';

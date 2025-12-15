@@ -1,0 +1,27 @@
+{
+  "name": "pmg-es-2025-2-ti1-2401100-excessoanimais",
+  "version": "1.0.0",
+  "description": "Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx json-server --watch ./src/db/db.json  --port 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-excessoanimais.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-excessoanimais/issues"
+  },
+  "homepage": "https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-excessoanimais#readme",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
+}
